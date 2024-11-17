@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finabl - AI-Powered Investment Solutions</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
+</head>
+<body class="bg-gray-50">
+    <!-- Hero Section -->
+    <section class="relative flex flex-col items-center justify-center text-center bg-gradient-to-r from-indigo-200 via-white to-indigo-200 h-screen px-8">
+        <div id="notification" class="hidden fixed top-4 right-4 bg-white shadow-md rounded-md border border-green-300 flex items-center p-4 space-x-2">
+            <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <div>
+                <p class="font-semibold text-green-700">Waiting list joined!</p>
+                <p class="text-sm text-gray-500">Thank you for joining the waiting list!</p>
+            </div>
+        </div>
+        <canvas id="threejs-canvas" class="absolute inset-0 z-0"></canvas>
+        <div class="absolute inset-0 bg-gradient-radial from-black-700 to-transparent opacity-30"></div>
+        <img src="app icon.png" class="object-fit w-48 mb-5">
+        <h1 class="text-5xl font-bold text-black mb-4 animate-fade-in">
+            Meet Finabl, the platform to <span id="typed-text"></span>
+        </h1>
+        
+        <div class="relative z-10 md:w-1/2 animate-fade-in">
+
+            <p class="text-lg text-gray-700 mb-8">We're empowering the next generation of informed investors to make smarter financial decisions. Join the waiting list today.</p>
+            <form id="form" class="flex items-center justify-center text-center space-x-2">
+                <input type="email" id="email" placeholder="Enter your email" class="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-600">
+                <button class="bg-black text-white font-semibold px-4 py-2 rounded-md hover:bg-gray-800" type="submit">Join Waiting List</button>
+            </form>
+            <div id="message"></div>
+        </div>
+
+        <!-- App Image -->
+        
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-8 text-center">
+        <p>&copy; 2024 Finabl. All rights reserved.</p>
+        <div class="flex justify-center space-x-4 mt-4">
+            <a href="#" class="hover:text-gray-300">Privacy Policy</a>
+            <a href="#" class="hover:text-gray-300">Terms of Service</a>
+            <a href="#" class="hover:text-gray-300">Contact Us</a>
+        </div>
+    </footer>
+
+    <!-- Animations -->
+    <style>
+        @keyframes fade-in {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .animate-fade-in {
+            animation: fade-in 1.5s ease-out;
+        }
+        
+        @keyframes slide-in-left {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        .animate-slide-in-left {
+            animation: slide-in-left 1s ease-out;
+        }
+
+        @keyframes slide-in-right {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        .animate-slide-in-right {
+            animation: slide-in-right 1s ease-out;
+        }
+        
+    </style>
+    <script>
+        
+        // Initialize Typed.js
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById("form").addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent the default form submission behavior
+            
+            const form = event.target;
+            const email = document.getElementById("email").value;
+            const url = "https://script.google.com/macros/s/AKfycbzMBbKWm6uqa8gK8PjgucOWHXaSaG6KWL3MLeSXA93-PQ6ou5b0oKlXapLZHMrNLhuvYg/exec";
+
+            const notification = document.getElementById("notification");
+            const triggerButton = document.getElementById("triggerNotification");
+            const closeButton = document.getElementById("closeNotification");
+            
+            const fullUrl = `${url}?newletter_email=${encodeURIComponent(email)}`;
+            
+            // Send the request using fetch
+            fetch(fullUrl, { method: "GET" })
+                .then(response => {
+                    if (response.ok) {
+                        //document.getElementById("message").innerText = "Subscription successful!";
+                        notification.classList.remove("hidden");
+                        notification.classList.add("flex");
+                        notification.classList.add("animate-slide-in-right");
+
+                        setTimeout(() => {
+                            notification.classList.add("hidden");
+                            notification.classList.remove("flex");
+                        }, 5000);
+
+                    } else {
+                        document.getElementById("message").innerText = "An error occurred. Please try again.";
+                    }
+                })
+                .catch(error => {
+                    document.getElementById("message").innerText = "An error occurred. Please try again.";
+                    console.error(error);
+                });
+        });
+            const options = {
+                strings: ["start your financial journey", "connect with friends and experts", "build your financial future"],
+                typeSpeed: 50,
+                backSpeed: 30,
+                loop: false
+            };
+            new Typed('#typed-text', options);
+        });
+        /*
+        // Initialize Three.js
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('threejs-canvas'), alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+
+        // Create a cube
+        const geometry = new THREE.BoxGeometry(100,100,100);
+        const material = new THREE.MeshBasicMaterial({ color: 0x00aaff, wireframe: true });
+        const cube = new THREE.Mesh(geometry, material);
+        scene.add(cube);
+
+        camera.position.z = 5;
+
+        // Variables for cube movement
+        let velocity = { x: (Math.random() - 0.5) * 0.01, y: (Math.random() - 0.5) * 0.01 };
+        let position = { x: 0, y: 0 };
+
+        // Animation loop with random motion
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            // Update position
+            position.x += velocity.x;
+            position.y += velocity.y;
+
+            // Check for boundaries and reverse direction if necessary
+            if (position.x > (window.innerWidth / 200) || position.x < -(window.innerWidth / 200)) {
+                velocity.x = -velocity.x;
+            }
+            if (position.y > (window.innerHeight / 200) || position.y < -(window.innerHeight / 200)) {
+                velocity.y = -velocity.y;
+            }
+            
+            // Apply position and rotation
+            cube.position.x = position.x;
+            cube.position.y = position.y;
+            cube.rotation.x += 0.01;
+            cube.rotation.y += 0.01;
+            
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });*/
+    </script>
+</body>
+</html>
