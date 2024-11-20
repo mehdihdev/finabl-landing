@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Finabl - AI-Powered Investment Solutions</title>
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
@@ -12,7 +11,33 @@
 </head>
 <body class="bg-gray-50">
     <!-- Hero Section -->
+    <nav class="bg-white/70 backdrop-blur-md shadow-md fixed top-4 left-1/2 transform -translate-x-1/2 z-50 rounded-full px-8 py-3">
+        <div class="flex justify-center items-center space-x-6">
+          <!-- Logo -->
+          <div class="text-lg font-bold text-gray-800">
+            Finabl
+          </div>
+          <!-- Navigation Links -->
+          <ul class="flex space-x-6 text-gray-600">
+            <li><a href="#home" class="hover:text-gray-800">Home</a></li>
+            <li><a href="#features" class="hover:text-gray-800">Features</a></li>
+            <li><a href="#how-it-works" class="hover:text-gray-800">How It Works</a></li>
+            <li><a href="#contact" class="hover:text-gray-800">Contact</a></li>
+          </ul>
+          <!-- Button -->
+          <a href="#download" class="px-6 py-2 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700">
+            Get Started
+          </a>
+        </div>
+      </nav>
+      
+      
+      
+      
+      
+      
     <section class="relative flex flex-col items-center justify-center text-center bg-gradient-to-r from-indigo-200 via-white to-indigo-200 h-screen px-8">
+
         <div id="notification" class="hidden fixed top-4 right-4 bg-white shadow-md rounded-md border border-green-300 flex items-center p-4 space-x-2">
             <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -34,7 +59,7 @@
             <p class="text-lg text-gray-700 mb-8">We're empowering the next generation of informed investors to make smarter financial decisions. Join the waiting list today.</p>
             <form id="form" class="flex items-center justify-center text-center space-x-2">
                 <input type="email" id="email" placeholder="Enter your email" class="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-600">
-                <button class="bg-black text-white font-semibold px-4 py-2 rounded-md hover:bg-gray-800" type="submit">Join Waiting List</button>
+                <button id="submitbutton" onclick="submitfunction()" class="bg-black text-white font-semibold px-4 py-2 rounded-md hover:bg-gray-800" type="submit">Join Waiting List</button>
             </form>
             <div id="message"></div>
         </div>
@@ -82,11 +107,19 @@
         
     </style>
     <script>
-        
+        function submitfunction() {
+                const submitbutton = document.getElementById("submitbutton");
+                submitbutton.classList.remove("bg-black");
+                submitbutton.classList.add("bg-green-600");
+            };
         // Initialize Typed.js
         document.addEventListener('DOMContentLoaded', () => {
+
+
+
             document.getElementById("form").addEventListener("submit", function (event) {
             event.preventDefault(); // Prevent the default form submission behavior
+
             
             const form = event.target;
             const email = document.getElementById("email").value;
@@ -101,8 +134,10 @@
             // Send the request using fetch
             fetch(fullUrl, { method: "GET" })
                 .then(response => {
+
                     if (response.ok) {
                         //document.getElementById("message").innerText = "Subscription successful!";
+
                         notification.classList.remove("hidden");
                         notification.classList.add("flex");
                         notification.classList.add("animate-slide-in-right");
