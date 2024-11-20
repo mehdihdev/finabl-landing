@@ -12,7 +12,25 @@
 <body class="bg-gray-50">
     <!-- Hero Section -->
 
-
+    <nav class="bg-white/70 backdrop-blur-md shadow-md fixed top-4 left-1/2 transform -translate-x-1/2 z-50 rounded-full px-8 py-3">
+        <div class="flex justify-center items-center space-x-6">
+          <!-- Logo -->
+          <div class="text-lg font-bold text-gray-800">
+            Finabl
+          </div>
+          <!-- Navigation Links -->
+          <ul class="flex space-x-6 text-gray-600">
+            <li><a href="#home" class="hover:text-gray-800">Home</a></li>
+            <li><a href="#features" class="hover:text-gray-800">Features</a></li>
+            <li><a href="#how-it-works" class="hover:text-gray-800">How It Works</a></li>
+            <li><a href="#contact" class="hover:text-gray-800">Contact</a></li>
+          </ul>
+          <!-- Button -->
+          <a href="#download" class="px-6 py-2 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700">
+            Get Started
+          </a>
+        </div>
+      </nav>
       
       
       
@@ -93,6 +111,10 @@
                 const submitbutton = document.getElementById("submitbutton");
                 submitbutton.classList.remove("bg-black");
                 submitbutton.classList.add("bg-green-600");
+                setTimeout(() => {
+                    submitbutton.classList.remove("bg-green-600");
+                    submitbutton.classList.add("bg-black");
+                        }, 3000);
             };
         // Initialize Typed.js
         document.addEventListener('DOMContentLoaded', () => {
