@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Finabl - AI-Powered Investment Solutions</title>
+    <title>Finabl - A Social and Educational Investing Platform</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 
 </head>
-<body class="bg-gray-50">
+<body class="bg-sky-800">
     <!-- Hero Section -->
 
-    <nav class="bg-white/70 backdrop-blur-5xl shadow-sm fixed top-4 left-1/2 transform -translate-x-1/2 z-50 rounded-full px-8 py-3">
+    <nav class="bg-sky-800 backdrop-blur-5xl shadow-sm fixed top-4 left-1/2 transform -translate-x-1/2 z-50 rounded-full px-8 py-3">
         <div class="flex justify-center items-center space-x-6">
           <!-- Logo -->
           <div class="flex items-center">
@@ -22,14 +24,11 @@
           <!-- Navigation Links -->
           <ul class="flex space-x-6 text-gray-600">
             <li><a href="#home" class="hover:text-gray-800">Home</a></li>
-            <li><a href="#features" class="hover:text-gray-800">Features</a></li>
-            <li><a href="#how-it-works" class="hover:text-gray-800">How It Works</a></li>
-            <li><a href="#contact" class="hover:text-gray-800">Contact</a></li>
+            <li><a href="#features" class="hover:text-gray-800">How It Works</a></li>
+            <li><a href="#how-it-works" class="hover:text-gray-800">Early Edge</a></li>
+            <li><a href="#contact" class="hover:text-gray-800">Features</a></li>
           </ul>
-          <!-- Button -->
-          <a href="#download" class="px-6 py-2 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700">
-            Get Started
-          </a>
+          
         </div>
       </nav>
       
@@ -39,7 +38,7 @@
       
     <section class="relative flex flex-col items-center justify-center text-center bg-gradient-to-r from-indigo-200 via-white to-indigo-200 h-screen px-8">
 
-        <div id="notification" class="hidden fixed top-4 right-4 bg-white shadow-md rounded-md border border-green-300 flex items-center p-4 space-x-2">
+        <div id="notification" class="hidden fixed top-4 right-4 bg-blue shadow-md rounded-md border border-green-300 flex items-center p-4 space-x-2">
             <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
@@ -52,12 +51,18 @@
         <div class="absolute inset-0 bg-gradient-radial from-black-700 to-transparent opacity-30"></div>
         <img src="app icon.png" class="object-fit w-48 mb-5">
         <h1 class="text-5xl font-bold text-black mb-4 animate-fade-in">
-            Meet Finabl, the platform to <span id="typed-text"></span>
+            Finabl: The platform for <span id="typed-text"></span>
         </h1>
         
         <div class="relative z-10 md:w-1/2 animate-fade-in">
 
-            <p class="text-lg text-gray-700 mb-8">We're empowering the next generation of informed investors to make smarter financial decisions. Join the waiting list today.</p>
+            <p class="text-lg text-gray-700 mb-8">
+                We’re empowering the next generation of investors to make smarter 
+                financial decisions through a social, educational, and beginner-friendly experience.
+                <span class="font-bold">Join the waiting list today to get your first 2 months free.</span> 
+            </p>
+            
+            
             <form id="form" class="flex items-center justify-center text-center space-x-2">
                 <input type="email" id="email" placeholder="Enter your email" class="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-600">
                 <button id="submitbutton" onclick="submitfunction()" class="bg-black text-white font-semibold px-4 py-2 rounded-md hover:bg-gray-800" type="submit">Join Waiting List</button>
@@ -65,19 +70,138 @@
             <div id="message"></div>
         </div>
 
-        <!-- App Image -->
+        
         
     </section>
+
+    <section class="relative flex flex-col justify-center text-center bg-gradient-to-r from-indigo-200 via-white to-indigo-200">
+        <h1 class="text-4xl font-bold text-center mb-12">How It Works</h1>
+
+        <div class="grid grid-cols-1 gap-12">
+            <!-- General Storyboard Row -->
+            <div class="grid grid-cols-2 gap-4 items-center">
+                <!-- Video Column -->
+                <div class="border-2 border-gray-300 rounded-lg overflow-hidden">
+                    <video id="general-video" class="w-full h-[500px]" loop autoplay muted>
+                        <source src="general_storyboard.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <!-- Text Column -->
+                <div>
+                    <h2 class="text-2xl font-semibold mb-4">Re-Defining the Investing Experience</h2>
+                    <p id="general-text" class="text-gray-600 italic fade-in-out">
+                        Dynamically changing text
+                    </p>
+                </div>
+            </div>
+
+            <!-- Learn Storyboard Row -->
+            <div class="grid grid-cols-2 gap-4 items-center">
+                <!-- Text Column -->
+                <div>
+                    <h2 class="text-2xl font-semibold mb-4">Duolingo-fying Investing Education</h2>
+                    <p id="learn-text" class="text-gray-600 italic fade-in-out">
+                        Dynamically changing text
+                    </p>
+                </div>
+                <!-- Video Column -->
+                <div class="border-2 border-gray-300 rounded-lg overflow-hidden">
+                    <video id="learn-video" class="w-[200px] h-[200px]" loop autoplay muted>
+                        <source src="learn_storyboard.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+
+            <!-- Social Storyboard Row -->
+            <div class="grid grid-cols-2 gap-4 items-center">
+                <!-- Video Column -->
+                <div class="border-2 border-gray-300 rounded-lg overflow-hidden">
+                    <video id="social-video" class="w-full h-[500px]" loop autoplay muted>
+                        <source src="social_storyboard.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <!-- Text Column -->
+                <div>
+                    <h2 class="text-2xl font-semibold mb-4">Connect and Grow with Friends & Experts</h2>
+                    <p id="social-text" class="text-gray-600 italic fade-in-out">
+                        Dynamically changing text
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="relative flex flex-col justify-center text-center bg-gradient-to-r from-indigo-200 via-white to-indigo-200">
+        <h1 class="text-4xl font-bold text-center mb-12">Early Edge</h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Left Content -->
+            <div>
+                <h2 class="text-3xl font-bold mb-12">Why Start Young...</h2>
+                <div class="mb-6">
+                    <h2 class="text-2xl font-semibold mb-4">1. Time is Your Biggest Ally</h2>
+                    <p class="text-gray-600">Starting young allows you to harness compound growth, take calculated risks, build lifelong financial habits, and acheive financial independence.</p>
+                </div>
+                <div class="mb-6">
+                    <h2 class="text-2xl font-semibold mb-4">2. Prepare for Life's Big Moment</h2>
+                    <p class="text-gray-600">Start building a fund with passive income for future goals like university, a home, travel, or business ventures.</p>
+                </div>
+                <div class="mb-6">
+                    <h2 class="text-2xl font-semibold mb-4">3. Capitalize on Opportunities</h2>
+                    <p class="text-gray-600">Most industries are currently booming with the advent of new technologies, understanding which companeis to invest in will build monumental wealth.</p>
+                </div>
+            </div>
+
+            <!-- Right Content -->
+            <div>
+                <div class="bg-white shadow-lg rounded-lg p-6">
+                    <h2 class="text-2xl font-semibold mb-4">Investment Growth Calculator</h2>
+
+                    <label class="block text-gray-700 mb-2" for="initial-amount">Initial Amount</label>
+                    <input id="initial-amount" type="number" class="w-full border-2 border-gray-300 rounded-lg p-2 mb-4" placeholder="Enter initial amount">
+
+                    <label class="block text-gray-700 mb-2">Investment Style</label>
+                    <div class="flex gap-4 mb-4">
+                        <label>
+                            <input type="radio" name="investment-style" value="passive" class="mr-2" checked> Passive
+                        </label>
+                        <label>
+                            <input type="radio" name="investment-style" value="active" class="mr-2"> Active
+                        </label>
+                    </div>
+
+                    <label class="block text-gray-700 mb-2" for="contribution-amount">Contribution Amount</label>
+                    <input id="contribution-amount" type="number" class="w-full border-2 border-gray-300 rounded-lg p-2 mb-4" placeholder="Enter contribution amount">
+
+                    <label class="block text-gray-700 mb-2" for="contribution-frequency">Contribution Frequency</label>
+                    <select id="contribution-frequency" class="w-full border-2 border-gray-300 rounded-lg p-2 mb-4">
+                        <option value="12">Monthly</option>
+                        <option value="4">Quarterly</option>
+                        <option value="1">Annually</option>
+                    </select>
+
+                    <label class="block text-gray-700 mb-2" for="years">Years to Invest</label>
+                    <input id="years" type="number" class="w-full border-2 border-gray-300 rounded-lg p-2 mb-4" placeholder="Enter number of years">
+
+                    <button id="calculate" class="w-full bg-blue-600 text-white font-semibold py-2 rounded-lg">Calculate</button>
+                </div>
+
+                <div class="mt-8">
+                    <canvas id="investment-chart" class="w-full h-64"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
 
 
     <!-- Footer -->
     <footer class="bg-black text-white py-8 text-center">
         <p>&copy; 2024 Finabl. All rights reserved.</p>
-        <div class="flex justify-center space-x-4 mt-4">
-            <a href="#" class="hover:text-gray-300">Privacy Policy</a>
-            <a href="#" class="hover:text-gray-300">Terms of Service</a>
-            <a href="#" class="hover:text-gray-300">Contact Us</a>
-        </div>
     </footer>
 
     <!-- Animations -->
@@ -104,6 +228,23 @@
         }
         .animate-slide-in-right {
             animation: slide-in-right 1s ease-out;
+        }
+
+        /* Add animation for dynamically changing text */
+        .fade-in-out {
+            animation: fade 1.5s ease-in-out;
+        }
+
+        @keyframes fade {
+            0% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
         }
         
     </style>
@@ -162,13 +303,117 @@
                 });
         });
             const options = {
-                strings: ["start your financial journey", "connect with friends and experts", "build your financial future"],
+                strings: ["building your investing community", "short, gamified investing education", "your journey to becoming financially able"],
                 typeSpeed: 50,
                 backSpeed: 30,
                 loop: false
             };
             new Typed('#typed-text', options);
         });
+
+        function updateDynamicText(videoId, textId, textMap) {
+            const video = document.getElementById(videoId);
+            const textElement = document.getElementById(textId);
+
+            video.addEventListener("timeupdate", () => {
+                const currentTime = Math.floor(video.currentTime);
+                const text = textMap[currentTime];
+                if (text && textElement.textContent !== text) {
+                    textElement.textContent = text;
+                    textElement.classList.remove("fade-in-out");
+                    void textElement.offsetWidth; // Trigger reflow for animation
+                    textElement.classList.add("fade-in-out");
+                }
+            });
+        }
+
+        // Define text changes for each video
+        updateDynamicText("general-video", "general-text", {
+            0: "Experience a new way of investing.",
+            3: "Focus on growth and innovation.",
+            6: "The future of investing is here.",
+        });
+
+        updateDynamicText("learn-video", "learn-text", {
+            0: "Learning made easy and fun.",
+            3: "Step-by-step guidance for investors.",
+            6: "Master the art of investing with us.",
+        });
+
+        updateDynamicText("social-video", "social-text", {
+            0: "Collaborate with verified experts.",
+            3: "Learn and grow with your community.",
+            6: "Invest smarter together.",
+        });
+
+        document.getElementById("calculate").addEventListener("click", () => {
+            const initialAmount = parseFloat(document.getElementById("initial-amount").value) || 0;
+            const contributionAmount = parseFloat(document.getElementById("contribution-amount").value) || 0;
+            const frequency = parseInt(document.getElementById("contribution-frequency").value) || 12;
+            const years = parseInt(document.getElementById("years").value) || 1;
+            const investmentStyle = document.querySelector('input[name="investment-style"]:checked').value;
+            
+            const annualReturn = investmentStyle === "passive" ? 0.06 : 0.10; // Passive: 6%, Active: 10%
+            const totalMonths = years * 12;
+            const monthlyReturn = Math.pow(1 + annualReturn, 1 / 12) - 1;
+
+            let balance = initialAmount;
+            const balances = [];
+            for (let month = 1; month <= totalMonths; month++) {
+                balance += contributionAmount;
+                balance *= 1 + monthlyReturn;
+                if (month % (12 / frequency) === 0) balances.push(balance.toFixed(2));
+            }
+
+            const labels = Array.from({ length: years }, (_, i) => `Year ${i + 1}`);
+            renderChart(labels, balances);
+        });
+
+        function renderChart(labels, data) {
+            const ctx = document.getElementById("investment-chart").getContext("2d");
+            new Chart(ctx, {
+                type: "line",
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: "Investment Growth",
+                        data: data,
+                        borderColor: "#2563eb",
+                        backgroundColor: "rgba(37, 99, 235, 0.1)",
+                        fill: true,
+                        tension: 0.3,
+                    }],
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: true,
+                        },
+                    },
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: "Years",
+                            },
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: "Balance ($)",
+                            },
+                        },
+                    },
+                },
+            });
+        }
+    
+
+
+
+
+
         /*
         // Initialize Three.js
         const scene = new THREE.Scene();
