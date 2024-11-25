@@ -7,8 +7,8 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://kit.fontawesome.com/ea12dcf2e6.js" crossorigin="anonymous"></script>
 
 
 
@@ -26,9 +26,9 @@
           <!-- Navigation Links -->
           <ul class="flex space-x-6 text-gray-600">
             <li><a href="#home" class="hover:text-gray-800">Home</a></li>
-            <li><a href="#features" class="hover:text-gray-800">How It Works</a></li>
-            <li><a href="#how-it-works" class="hover:text-gray-800">Early Edge</a></li>
-            <li><a href="#contact" class="hover:text-gray-800">Features</a></li>
+            <li><a href="#how-it-works" class="hover:text-gray-800">How It Works</a></li>
+            <li><a href="#early-edge" class="hover:text-gray-800">Early Edge</a></li>
+            <li><a href="#features" class="hover:text-gray-800">Features</a></li>
           </ul>
           
         </div>
@@ -38,7 +38,7 @@
       
       
       
-    <section class="relative flex flex-col items-center justify-center text-center bg-gradient-to-r from-indigo-200 via-white to-indigo-200 h-screen px-8">
+    <section id="home" class="relative flex flex-col items-center justify-center text-center bg-gradient-to-r from-indigo-200 via-white to-indigo-200 h-screen px-8">
 
         <div id="notification" class="hidden fixed top-4 right-4 bg-blue shadow-md rounded-md border border-green-300 flex items-center p-4 space-x-2">
             <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -74,7 +74,7 @@
         <img src="qrcode.png" class="object-fit w-48 m-5">
     </section>
 <hr />
-<section class="relative flex flex-col justify-center items-center bg-gradient-to-r from-indigo-200 via-white to-indigo-200">
+<section id="how-it-works" class="relative flex flex-col justify-center items-center bg-gradient-to-r from-indigo-200 via-white to-indigo-200">
     <h1 class="text-4xl font-bold text-center mb-12 mt-12">How It Works</h1>
 
     <div class="grid grid-cols-1 gap-12 w-3/4 items-center">
@@ -118,7 +118,7 @@
         <div class="grid grid-cols-2 gap-4 items-center">
             <!-- Video Column -->
             <div class="border-2 border-gray-300 rounded-lg overflow-hidden">
-                <video id="social-video" class="w-full h-[500px]" src="learn_storyboard.mov" loop autoplay muted>
+                <video id="social-video" class="" src="learn_storyboard.mov" loop autoplay muted>
                     <source src="learn_storyboard.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
@@ -138,7 +138,7 @@
 
 
 
-<section class="relative flex flex-col items-center justify-center bg-gradient-to-r from-indigo-200 via-white to-indigo-200 p-12">
+<section id="early-edge" class="relative flex flex-col items-center justify-center bg-gradient-to-r from-indigo-200 via-white to-indigo-200 p-12">
     <hr />
     <h1 class="text-4xl font-bold text-center mb-12 mt-12">Early Edge</h1>
     
@@ -195,12 +195,179 @@
             </div>
 
             <div class="mt-8">
-                <canvas id="investment-chart" class="w-full h-64"></canvas>
+                <div id="investment-chart" class="w-full h-64"></div>
+
+                            
+                <div id="controls-container" class="hidden mt-4">
+                    <label for="delete-line-select" class="block text-gray-700 mb-2">Delete Line</label>
+                    <div class="flex items-center space-x-4">
+                        <select id="delete-line-select" class="border-2 border-gray-300 rounded-lg p-2">
+                            <!-- Options will be dynamically added -->
+                        </select>
+                        <button id="delete-line" class="bg-red-600 text-white font-semibold py-2 px-4 rounded-lg">
+                            Delete Line
+                        </button>
+                        <button id="reset-chart" class="bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg">
+                            Reset Chart
+                        </button>
+                    </div>
+                </div>
+                
             </div>
+            
         </div>
     </div>
 </section>
 
+<section id="features" class="relative flex flex-col items-center justify-center bg-gradient-to-r from-indigo-200 via-white to-indigo-200 p-12">
+    <h1 class="text-4xl font-bold text-center mb-4">Features</h1>
+    <p class="mb-4">Feel like you don't have enough...</p>
+
+    <!-- Topic Selection Buttons -->
+    <div class="flex flex-wrap justify-center gap-4 mb-8 lg:w-1/2 md:w-3/4">
+        <button class="topic-btn bg-gray-200 text-black px-4 py-2 rounded-md hover:bg-gray-300 focus:bg-gray-400" data-topic="money">Money?</button>
+        <button class="topic-btn bg-gray-200 text-black px-4 py-2 rounded-md hover:bg-gray-300 focus:bg-gray-400" data-topic="time">Time?</button>
+        <button class="topic-btn bg-gray-200 text-black px-4 py-2 rounded-md hover:bg-gray-300 focus:bg-gray-400" data-topic="education">Education?</button>
+        <button class="topic-btn bg-gray-200 text-black px-4 py-2 rounded-md hover:bg-gray-300 focus:bg-gray-400" data-topic="interest">Interest?</button>
+    </div>
+
+    <!-- Features Grid -->
+    <div id="features-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-3/4 grid-auto-rows-minmax">
+        <!-- Money ones -->
+        <div class="feature-item text-white rounded-xl items-center content-center p-4 animate-slide-in-bottom hover:shadow-lg" style="background-color: #304550;" data-topic="money">
+            <i class="fa-solid fa-chart-pie fa-3x"></i>
+            <h2 class="text-xl font-semibold mt-4">Fractional Investment</h2>
+            <p class="text-gray-400">Start investing with as little as $1.</p>
+        </div>
+        <div class="feature-item text-white rounded-xl items-center content-center p-4 animate-slide-in-bottom hover:shadow-lg" style="background-color: #304550;" data-topic="money">
+            <i class="fa-solid fa-chart-column fa-3x"></i>
+            <h2 class="text-xl font-semibold mt-4">Thematic Portfolios</h2>
+            <p class="text-gray-400">Pre-designed portfolios that could align with specifically your budget.</p>
+        </div>
+        <div class="feature-item text-white rounded-xl items-center content-center p-4 animate-slide-in-bottom hover:shadow-lg" style="background-color: #304550;" data-topic="money">
+            <i class="fa-solid fa-copy fa-3x"></i>
+            <h2 class="text-xl font-semibold mt-4">Paper Trading</h2>
+            <p class="text-gray-400">Practice investing without using real money in a simulator that follows real-market data.</p>
+        </div>
+        <div class="feature-item text-white rounded-xl items-center content-center p-4 animate-slide-in-bottom hover:shadow-lg" style="background-color: #304550;" data-topic="money">
+            <i class="fa-solid fa-wallet fa-3x"></i>
+            <h2 class="text-xl font-semibold mt-4">Budget-Friendly Access</h2>
+            <p class="text-gray-400">Access a full suite of educational and analysis tools, AI-powered insights, and an investing community for as little as $2/month or $15/year</p>
+        </div>
+        <div class="feature-item text-white rounded-xl items-center content-center p-4 animate-slide-in-bottom hover:shadow-lg" style="background-color: #304550;" data-topic="money">
+            <i class="fa-solid fa-credit-card fa-3x"></i>
+            <h2 class="text-xl font-semibold mt-4">Seamless Integration with Payment Services</h2>
+            <p class="text-gray-400">Effortlessly connect your investments to payment platforms, allowing you to cash out and spend your earnings instantly.</p>
+        </div>
+        <div class="feature-item text-white rounded-xl items-center content-center p-4 animate-slide-in-bottom hover:shadow-lg" style="background-color: #304550;" data-topic="money">
+            <i class="fa-solid fa-piggy-bank fa-3x"></i>
+            <h2 class="text-xl font-semibold mt-4">Smart Savings Automation</h2>
+            <p class="text-gray-400">Set aside spare change or small amounts to build your investment portfolio over time without feeling the pinch.</p>
+        </div>
+
+
+        <!-- Time ones -->
+        <div class="feature-item text-white rounded-xl items-center content-center p-4 animate-slide-in-bottom hover:shadow-lg" style="background-color: #304550;" data-topic="time">
+            <i class="fa-solid fa-person-chalkboard fa-3x"></i>
+            <h2 class="text-xl font-semibold mt-4">Bite-Sized Lessons</h2>
+            <p class="text-gray-400">Learn investing concepts in under 5 minutes.</p>
+        </div>
+        <div class="feature-item text-white rounded-xl items-center content-center p-4 animate-slide-in-bottom hover:shadow-lg" style="background-color: #304550;" data-topic="time">
+            <i class="fa-solid fa-newspaper fa-3x"></i>
+            <h2 class="text-xl font-semibold mt-4">Simplified News Research</h2>
+            <p class="text-gray-400">Powered by advanced AI search and generative algorithms, concise summaries of key news impacting your portfolios, enabling informed investing decisions in seconds and saving you hours of research.</p>
+        </div>
+        <div class="feature-item text-white rounded-xl items-center content-center p-4 animate-slide-in-bottom hover:shadow-lg" style="background-color: #304550;" data-topic="time">
+            <i class="fa-solid fa-bell fa-3x"></i>
+            <h2 class="text-xl font-semibold mt-4">Real-Time Notifications</h2>
+            <p class="text-gray-400">Get alerts on opportunities or changes to your portfolios at a glance.</p>
+        </div>
+        <div class="feature-item text-white rounded-xl items-center content-center p-4 animate-slide-in-bottom hover:shadow-lg" style="background-color: #304550;" data-topic="time">
+            <i class="fa-solid fa-chart-simple fa-3x"></i>
+            <h2 class="text-xl font-semibold mt-4">Pre-Built Portfolios</h2>
+            <p class="text-gray-400">Choose from AI-recommended portfolios tailored to your goals, saving you the time and stress of picking individual stocks</p>
+        </div>
+        <div class="feature-item text-white rounded-xl items-center content-center p-4 animate-slide-in-bottom hover:shadow-lg" style="background-color: #304550;" data-topic="time">
+            <i class="fa-solid fa-rocket fa-3x"></i>
+            <h2 class="text-xl font-semibold mt-4">AI Tutor Support</h2>
+            <p class="text-gray-400">Ask for concise support on learning modules, available 24/7.</p>
+        </div>
+        <div class="feature-item text-white rounded-xl items-center content-center p-4 animate-slide-in-bottom hover:shadow-lg" style="background-color: #304550;" data-topic="time">
+            <i class="fa-solid fa-calendar-day fa-3x"></i>
+            <h2 class="text-xl font-semibold mt-4">Daily Goals</h2>
+            <p class="text-gray-400">Stay consistent with quick, manageable tasks.</p>
+        </div>
+
+        <!-- Education ones -->
+        <div class="feature-item text-white rounded-xl items-center content-center p-4 animate-slide-in-bottom hover:shadow-lg" style="background-color: #304550;" data-topic="education">
+            <i class="fa-solid fa-graduation-cap fa-3x"></i>
+            <h2 class="text-xl font-semibold mt-4">Step-by-Step Learning Tracks</h2>
+            <p class="text-gray-400">Beginner, intermediate, and advanced courses tailored to your level.</p>
+        </div>
+        <div class="feature-item text-white rounded-xl items-center content-center p-4 animate-slide-in-bottom hover:shadow-lg" style="background-color: #304550;" data-topic="education">
+            <i class="fa-solid fa-chalkboard-user fa-3x"></i>
+            <h2 class="text-xl font-semibold mt-4">Connect with Verified Expert</h2>
+            <p class="text-gray-400">Connect with people on the app who are verified experts for advice on investments.</p>
+        </div>
+        <div class="feature-item text-white rounded-xl items-center content-center p-4 animate-slide-in-bottom hover:shadow-lg" style="background-color: #304550;" data-topic="education">
+            <i class="fa-solid fa-rocket fa-3x"></i>
+            <h2 class="text-xl font-semibold mt-4">AI Tutor Support</h2>
+            <p class="text-gray-400">Ask questions and get personalized explanations anytime.</p>
+        </div>
+        <div class="feature-item text-white rounded-xl items-center content-center p-4 animate-slide-in-bottom hover:shadow-lg" style="background-color: #304550;" data-topic="education">
+            <i class="fa-solid fa-calendar-day fa-3x"></i>
+            <h2 class="text-xl font-semibold mt-4">Market Moment Simulations</h2>
+            <p class="text-gray-400">Learn by practicing decisions based on historical data of your portfolios.</p>
+        </div>
+        <div class="feature-item text-white rounded-xl items-center content-center p-4 animate-slide-in-bottom hover:shadow-lg" style="background-color: #304550;" data-topic="education">
+            <i class="fa-solid fa-circle-info fa-3x"></i>
+            <h2 class="text-xl font-semibold mt-4">Info-Buttons</h2>
+            <p class="text-gray-400">Quick definitions for complex financial terms in the app.</p>
+        </div>
+        <div class="feature-item text-white rounded-xl items-center content-center p-4 animate-slide-in-bottom hover:shadow-lg" style="background-color: #304550;" data-topic="education">
+            <i class="fa-solid fa-chalkboard fa-3x"></i>
+            <h2 class="text-xl font-semibold mt-4">Visual Learning Tools</h2>
+            <p class="text-gray-400">Charts, graphs, and animations that simplify investing concepts.</p>
+        </div>
+
+
+        <!-- Interest ones -->
+        <div class="feature-item text-white rounded-xl items-center content-center p-4 animate-slide-in-bottom hover:shadow-lg" style="background-color: #304550;" data-topic="interest">
+            <i class="fa-solid fa-chart-column fa-3x"></i>
+            <h2 class="text-xl font-semibold mt-4">Thematic Investing</h2>
+            <p class="text-gray-400">Explore portfolios centered around industries you find exciting like AI, gaming, or clean energy.</p>
+        </div>
+        <div class="feature-item text-white rounded-xl items-center content-center p-4 animate-slide-in-bottom hover:shadow-lg" style="background-color: #304550;" data-topic="interest">
+            <i class="fa-solid fa-gamepad fa-3x"></i>
+            <h2 class="text-xl font-semibold mt-4">Gamified Progress</h2>
+            <p class="text-gray-400">Earn points, badges, and rewards as you learn and grow.</p>
+        </div>
+        <div class="feature-item text-white rounded-xl items-center content-center p-4 animate-slide-in-bottom hover:shadow-lg" style="background-color: #304550;" data-topic="interest">
+            <i class="fa-solid fa-people-group fa-3x"></i>
+            <h2 class="text-xl font-semibold mt-4">Collaborative Portfolios</h2>
+            <p class="text-gray-400">Connect with your friends to create portfolios together to pool in money to invest together.</p>
+        </div>
+        <div class="feature-item text-white rounded-xl items-center content-center p-4 animate-slide-in-bottom hover:shadow-lg" style="background-color: #304550;" data-topic="interest">
+            <i class="fa-solid fa-trophy fa-3x"></i>
+            <h2 class="text-xl font-semibold mt-4">Competitions</h2>
+            <p class="text-gray-400">Compete with others in the app to earn rewards and have a fun time with friends.</p>
+        </div>
+        <div class="feature-item text-white rounded-xl items-center content-center p-4 animate-slide-in-bottom hover:shadow-lg" style="background-color: #304550;" data-topic="interest">
+            <i class="fa-solid fa-graduation-cap fa-3x"></i>
+            <h2 class="text-xl font-semibold mt-4">Tuition Rewards Program</h2>
+            <p class="text-gray-400">Earn points for learning and investing that can be redeemed for tuition discounts towards your university, making your financial journey even more rewarding.</p>
+        </div>
+        <div class="feature-item text-white rounded-xl items-center content-center p-4 animate-slide-in-bottom hover:shadow-lg" style="background-color: #304550;" data-topic="interest">
+            <i class="fa-solid fa-calendar-day fa-3x"></i>
+            <h2 class="text-xl font-semibold mt-4">Market Moment Simulations</h2>
+            <p class="text-gray-400">Learn by practicing decisions based on historical data of your portfolios, bridging the gap between theory and applied personal practicality.</p>
+        </div>
+
+
+
+
+    </div>
+</section>
 
 
 
@@ -211,6 +378,24 @@
 
     <!-- Animations -->
     <style>
+           html{
+     scroll-behavior: smooth;;
+   }
+   @keyframes slide-in-bottom {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-in-bottom {
+  animation: slide-in-bottom 0.5s ease-out forwards;
+}
+
         @keyframes fade-in {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -265,10 +450,159 @@
             };
         // Initialize Typed.js
         document.addEventListener('DOMContentLoaded', () => {
+            const topicButtons = document.querySelectorAll(".topic-btn");
+    const featureItems = document.querySelectorAll(".feature-item");
+
+    topicButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            const topic = button.getAttribute("data-topic");
+
+            // Highlight the active button
+            topicButtons.forEach((btn) => btn.classList.remove("bg-gray-400", "text-white"));
+            button.classList.add("bg-gray-400", "text-white");
+
+            // Show/hide feature items based on topic
+            featureItems.forEach((item) => {
+                if (topic === "all" || item.getAttribute("data-topic") === topic) {
+                    item.classList.remove("hidden");
+                } else {
+                    item.classList.add("hidden");
+                }
+            });
+        });
+    });
+    document.querySelector(".topic-btn[data-topic='money']").click();
+
+            let chart; // ApexCharts instance
+    const seriesData = []; // Array to store all series data
+
+    // Button click: Add a new line
+    document.getElementById("calculate").addEventListener("click", () => {
+        const initialAmount = parseFloat(document.getElementById("initial-amount").value) || 0;
+        const years = parseInt(document.getElementById("years").value) || 1;
+        const labelName = `Investment ${seriesData.length + 1}`; // Unique name for each line
+
+        // Generate balances for the new line
+        const balances = Array.from({ length: years }, (_, i) =>
+            Math.round(initialAmount * (1 + 0.06) ** (i + 1))
+        );
+        const labels = Array.from({ length: years }, (_, i) => `Year ${i + 1}`);
+
+        console.log("New Line Balances:", balances);
+
+        // Add the new series to the chart
+        seriesData.push({
+            name: labelName,
+            data: balances,
+        });
+
+        if (!chart) {
+            // Create the chart if it doesn't already exist
+            chart = renderChart(labels, seriesData);
+        } else {
+            // Update the chart with the new series
+            chart.updateSeries(seriesData);
+        }
+
+        // Add the new line to the delete dropdown
+        const option = document.createElement("option");
+        option.value = seriesData.length - 1; // Index of the series in seriesData
+        option.textContent = labelName;
+        document.getElementById("delete-line-select").appendChild(option);
+
+        // Show the controls container
+        document.getElementById("controls-container").classList.remove("hidden");
+    });
+
+    // Button click: Delete a specific line
+    document.getElementById("delete-line").addEventListener("click", () => {
+        const lineIndex = parseInt(document.getElementById("delete-line-select").value);
+        if (!isNaN(lineIndex) && seriesData[lineIndex]) {
+            // Remove the selected line from seriesData
+            seriesData.splice(lineIndex, 1);
+
+            // Update the dropdown
+            const select = document.getElementById("delete-line-select");
+            select.options[lineIndex].remove();
+
+            // Update the chart
+            if (chart) {
+                chart.updateSeries(seriesData);
+            }
+        }
+    });
+
+    // Button click: Reset the entire chart
+    document.getElementById("reset-chart").addEventListener("click", () => {
+        // Clear all series data
+        seriesData.length = 0;
+
+        // Clear the delete dropdown
+        const select = document.getElementById("delete-line-select");
+        while (select.options.length > 0) {
+            select.remove(0);
+        }
+
+        // Reset the chart
+        if (chart) {
+            chart.updateSeries(seriesData);
+        }
+
+        // Hide the controls container
+        document.getElementById("controls-container").classList.add("hidden");
+    });
+
+    // Function to render the chart
+    function renderChart(labels, series) {
+        const options = {
+            chart: {
+                type: "line",
+                height: 350,
+            },
+            series: series, // Add all series
+            xaxis: {
+                categories: labels,
+                title: {
+                    text: "Years",
+                },
+            },
+            yaxis: {
+                min: 0,
+                title: {
+                    text: "Balance ($)",
+                },
+                labels: {
+                    formatter: function (value) {
+                        return `$${Math.round(value).toLocaleString()}`;
+                    },
+                },
+            },
+            tooltip: {
+                y: {
+                    formatter: function (value) {
+                        return `$${Math.round(value).toLocaleString()}`;
+                    },
+                },
+            },
+            colors: ["#2563eb", "#34d399", "#fbbf24", "#ef4444", "#8b5cf6"], // Dynamic colors for multiple lines
+            stroke: {
+                curve: "smooth",
+            },
+        };
+
+        const container = document.querySelector("#investment-chart");
+        if (!container) {
+            console.error("#investment-chart container not found!");
+            return null;
+        }
+
+        const chart = new ApexCharts(container, options);
+        chart.render().then(() => console.log("Chart rendered successfully!"));
+        return chart;
+    }
 
 
-
-            document.getElementById("form").addEventListener("submit", function (event) {
+        document.getElementById("form").addEventListener("submit", function (event) {
             event.preventDefault(); // Prevent the default form submission behavior
 
             
@@ -351,127 +685,7 @@
             6: "Invest smarter together.",
         });
 
-        document.getElementById("calculate").addEventListener("click", () => {
-            const initialAmount = parseFloat(document.getElementById("initial-amount").value) || 0;
-            const contributionAmount = parseFloat(document.getElementById("contribution-amount").value) || 0;
-            const frequency = parseInt(document.getElementById("contribution-frequency").value) || 12;
-            const years = parseInt(document.getElementById("years").value) || 1;
-            const investmentStyle = document.querySelector('input[name="investment-style"]:checked').value;
-            
-            const annualReturn = investmentStyle === "passive" ? 0.06 : 0.10; // Passive: 6%, Active: 10%
-            const totalMonths = years * 12;
-            const monthlyReturn = Math.pow(1 + annualReturn, 1 / 12) - 1;
 
-            let balance = initialAmount;
-            const balances = [];
-            for (let month = 1; month <= totalMonths; month++) {
-                balance += contributionAmount;
-                balance *= 1 + monthlyReturn;
-                if (month % (12 / frequency) === 0) balances.push(balance.toFixed(2));
-            }
-
-            const labels = Array.from({ length: years }, (_, i) => `Year ${i + 1}`);
-            renderChart(labels, balances);
-        });
-
-        function renderChart(labels, data) {
-            const ctx = document.getElementById("investment-chart").getContext("2d");
-            new Chart(ctx, {
-                type: "line",
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: "Investment Growth",
-                        data: data,
-                        borderColor: "#2563eb",
-                        backgroundColor: "rgba(37, 99, 235, 0.1)",
-                        fill: true,
-                        tension: 0.3,
-                    }],
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            display: true,
-                        },
-                    },
-                    scales: {
-                        x: {
-                            title: {
-                                display: true,
-                                text: "Years",
-                            },
-                        },
-                        y: {
-                            title: {
-                                display: true,
-                                text: "Balance ($)",
-                            },
-                        },
-                    },
-                },
-            });
-        }
-    
-
-
-
-
-
-        /*
-        // Initialize Three.js
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('threejs-canvas'), alpha: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(window.devicePixelRatio);
-
-        // Create a cube
-        const geometry = new THREE.BoxGeometry(100,100,100);
-        const material = new THREE.MeshBasicMaterial({ color: 0x00aaff, wireframe: true });
-        const cube = new THREE.Mesh(geometry, material);
-        scene.add(cube);
-
-        camera.position.z = 5;
-
-        // Variables for cube movement
-        let velocity = { x: (Math.random() - 0.5) * 0.01, y: (Math.random() - 0.5) * 0.01 };
-        let position = { x: 0, y: 0 };
-
-        // Animation loop with random motion
-        function animate() {
-            requestAnimationFrame(animate);
-            
-            // Update position
-            position.x += velocity.x;
-            position.y += velocity.y;
-
-            // Check for boundaries and reverse direction if necessary
-            if (position.x > (window.innerWidth / 200) || position.x < -(window.innerWidth / 200)) {
-                velocity.x = -velocity.x;
-            }
-            if (position.y > (window.innerHeight / 200) || position.y < -(window.innerHeight / 200)) {
-                velocity.y = -velocity.y;
-            }
-            
-            // Apply position and rotation
-            cube.position.x = position.x;
-            cube.position.y = position.y;
-            cube.rotation.x += 0.01;
-            cube.rotation.y += 0.01;
-            
-            renderer.render(scene, camera);
-        }
-
-        animate();
-
-        // Handle window resize
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });*/
     </script>
 </body>
 </html>
