@@ -455,15 +455,26 @@
     let maxYears = 0;
     let labelCounter = 1;
 
+    // Function to generate labels dynamically
+    const generateLabels = (maxYears) => {
+        return Array.from({ length: maxYears + 1 }, (_, i) => `Year ${i}`);
+    };
+
+    // Debugging function to log investment calculations
+    const logBalances = (balances) => {
+        console.log("Generated Balances:", balances);
+    };
+
     // Button click: Add a new line
     document.getElementById("calculate").addEventListener("click", () => {
         const initialAmount = parseFloat(document.getElementById("initial-amount").value) || 0;
         const years = parseInt(document.getElementById("years").value) || 1;
         const contributionAmount = parseFloat(document.getElementById("contribution-amount").value) || 0;
-        const contributionFrequency = parseInt(document.getElementById("contribution-frequency").value) || 1; // Number of contributions per year
+        const contributionFrequency = parseInt(document.getElementById("contribution-frequency").value) || 1; // Contributions per year
         const annualRate = parseFloat(document.getElementById("investment-style").value) || 0; // Annual rate of return (as a decimal)
         const labelName = `Investment ${labelCounter++}`; // Unique name for each line
 
+        // Update maxYears to accommodate the longest investment period
         maxYears = Math.max(maxYears, years);
 
         const balances = [initialAmount]; // Include Year 0 balance
@@ -471,20 +482,37 @@
             const compoundingRate = annualRate / contributionFrequency; // Rate per period
             const totalPeriods = contributionFrequency * i; // Total periods until year `i`
 
-            // Calculate future value of initial amount
-            const futureValueInitial = initialAmount * (1 + annualRate) ** i;
+            // Ensure all calculations return valid numbers
+            const futureValueInitial = isNaN(initialAmount * (1 + annualRate) ** i)
+                ? 0
+                : initialAmount * (1 + annualRate) ** i;
 
-            // Calculate future value of contributions
-            const futureValueContributions = contributionAmount * ((1 + compoundingRate) ** totalPeriods - 1) / compoundingRate;
+            const futureValueContributions = isNaN(
+                contributionAmount * ((1 + compoundingRate) ** totalPeriods - 1) / compoundingRate
+            )
+                ? 0
+                : contributionAmount * ((1 + compoundingRate) ** totalPeriods - 1) / compoundingRate;
 
-            // Total future value
-            balances.push(Math.round(futureValueInitial + futureValueContributions));
+            const totalFutureValue = Math.round(futureValueInitial + futureValueContributions);
+
+            // Push valid data or null if invalid
+            balances.push(isNaN(totalFutureValue) ? null : totalFutureValue);
         }
 
-        // Generate labels for each year
-        const labels = Array.from({ length: maxYears + 1 }, (_, i) => `Year ${i}`);
+        // Log balances for debugging
+        logBalances(balances);
 
-        console.log("New Line Balances:", balances);
+        // Pad all existing series to match the new maxYears
+        seriesData.forEach((series) => {
+            while (series.data.length <= maxYears) {
+                series.data.push(null); // Add null for missing years
+            }
+        });
+
+        // Pad the current series data to match maxYears
+        while (balances.length <= maxYears) {
+            balances.push(null);
+        }
 
         // Add the new series to the chart
         seriesData.push({
@@ -492,11 +520,19 @@
             data: balances,
         });
 
+        const labels = generateLabels(maxYears);
+        console.log(labels)
+
         if (!chart) {
             // Create the chart if it doesn't already exist
             chart = renderChart(labels, seriesData);
         } else {
-            // Update the chart with the new series
+            // Update the chart with the new series and new labels
+            chart.updateOptions({
+                xaxis: {
+                    categories: labels,
+                },
+            });
             chart.updateSeries(seriesData);
         }
 
@@ -521,8 +557,17 @@
             const select = document.getElementById("delete-line-select");
             select.options[lineIndex].remove();
 
+            // Recalculate maxYears after deletion
+            maxYears = Math.max(...seriesData.map((s) => s.data.length - 1), 0);
+            const labels = generateLabels(maxYears);
+
             // Update the chart
             if (chart) {
+                chart.updateOptions({
+                    xaxis: {
+                        categories: labels,
+                    },
+                });
                 chart.updateSeries(seriesData);
             }
         }
@@ -541,7 +586,12 @@
 
         // Reset the chart
         if (chart) {
-            chart.updateSeries(seriesData);
+            chart.updateSeries([]);
+            chart.updateOptions({
+                xaxis: {
+                    categories: [],
+                },
+            });
         }
 
         // Hide the controls container
