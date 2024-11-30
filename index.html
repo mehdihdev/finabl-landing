@@ -79,25 +79,26 @@
 
     <div class="grid grid-cols-1 gap-12 w-3/4 items-center">
         <!-- General Storyboard Row -->
-        <div class="grid grid-cols-2 gap-4 items-center m-12">
+        <div class="grid grid-cols-2 items-center">
             <!-- Video Column -->
-            <div class="border-2 border-gray-300 rounded-lg overflow-hidden">
-                <video id="general-video" class="w-full h-[500px]" loop autoplay muted>
-                    <source src="learn_storyboard.mp4" type="video/mp4">
+            <div class="border-2 border-gray-300 rounded-xl overflow-hidden w-1/2 mx-auto fade-in-out">
+                <video id="general-video" loop autoplay muted>
+                    <source src="redefining.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </div>
             <!-- Text Column -->
             <div>
                 <h2 class="text-2xl font-semibold mb-4">Re-Defining the Investing Experience</h2>
-                <p id="general-text" class="text-gray-600 italic fade-in-out">
+                <p id="general-text" class="text-gray-600 italic">
                     Dynamically changing text
                 </p>
             </div>
         </div>
+        
 
         <!-- Learn Storyboard Row -->
-        <div class="grid grid-cols-2 gap-4 items-center text-right">
+        <div class="grid grid-cols-2 items-center text-right">
             <!-- Text Column -->
             <div>
                 <h2 class="text-2xl font-semibold mb-4">Duolingo-fying Investing Education</h2>
@@ -106,20 +107,20 @@
                 </p>
             </div>
             <!-- Video Column -->
-            <div class="border-2 border-gray-300 rounded-lg overflow-hidden">
+            <div class="border-2 border-gray-300 rounded-lg overflow-hidden w-1/2 mx-auto">
                 <video id="learn-video" loop autoplay muted>
-                    <source src="learn_storyboard.mp4" type="video/mp4">
+                    <source src="duolingo.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </div>
         </div>
 
         <!-- Social Storyboard Row -->
-        <div class="grid grid-cols-2 gap-4 items-center">
+        <div class="grid grid-cols-2 items-center">
             <!-- Video Column -->
-            <div class="border-2 border-gray-300 rounded-lg overflow-hidden">
-                <video id="social-video" class="" src="learn_storyboard.mov" loop autoplay muted>
-                    <source src="learn_storyboard.mp4" type="video/mp4">
+            <div class="border-2 border-gray-300 rounded-lg overflow-hidden w-1/2 mx-auto">
+                <video id="social-video" loop autoplay muted>
+                    <source src="friendsnexperts.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </div>
@@ -194,27 +195,25 @@
                 <button id="calculate" class="w-full bg-blue-600 text-white font-semibold py-2 rounded-lg">Calculate</button>
             </div>
 
-            <div class="mt-8">
-                <div id="investment-chart" class="w-full h-64"></div>
 
-                            
-                <div id="controls-container" class="hidden mt-4">
-                    <label for="delete-line-select" class="block text-gray-700 mb-2">Delete Line</label>
-                    <div class="flex items-center space-x-4">
-                        <select id="delete-line-select" class="border-2 border-gray-300 rounded-lg p-2">
-                            <!-- Options will be dynamically added -->
-                        </select>
-                        <button id="delete-line" class="bg-red-600 text-white font-semibold py-2 px-4 rounded-lg">
-                            Delete Line
-                        </button>
-                        <button id="reset-chart" class="bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg">
-                            Reset Chart
-                        </button>
-                    </div>
-                </div>
-                
-            </div>
             
+        </div>
+    </div>
+    <div class="mt-8 w-3/4">
+        <div id="investment-chart" class="w-full h-64"></div>                    
+        <div id="controls-container" class="hidden mt-4">
+            <label for="delete-line-select" class="block text-gray-700 mb-2">Delete Line</label>
+            <div class="flex items-center space-x-4">
+                <select id="delete-line-select" class="border-2 border-gray-300 rounded-lg p-2">
+                    <!-- Options will be dynamically added -->
+                </select>
+                <button id="delete-line" class="bg-red-600 text-white font-semibold py-2 px-4 rounded-lg">
+                    Delete Line
+                </button>
+                <button id="reset-chart" class="bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg">
+                    Reset Chart
+                </button>
+            </div>
         </div>
     </div>
 </section>
@@ -659,9 +658,9 @@
                 const text = textMap[currentTime];
                 if (text && textElement.textContent !== text) {
                     textElement.textContent = text;
-                    textElement.classList.remove("fade-in-out");
+                    //textElement.classList.remove("fade-in-out");
                     void textElement.offsetWidth; // Trigger reflow for animation
-                    textElement.classList.add("fade-in-out");
+                    //textElement.classList.add("fade-in-out");
                 }
             });
         }
@@ -669,20 +668,20 @@
         // Define text changes for each video
         updateDynamicText("general-video", "general-text", {
             0: "Experience a new way of investing.",
-            3: "Focus on growth and innovation.",
-            6: "The future of investing is here.",
+            5: "Focus on growth and innovation.",
+            10: "The future of investing is here.",
         });
 
         updateDynamicText("learn-video", "learn-text", {
             0: "Learning made easy and fun.",
-            3: "Step-by-step guidance for investors.",
-            6: "Master the art of investing with us.",
+            5: "Step-by-step guidance for investors.",
+            10: "Master the art of investing with us.",
         });
 
         updateDynamicText("social-video", "social-text", {
             0: "Collaborate with verified experts.",
-            3: "Learn and grow with your community.",
-            6: "Invest smarter together.",
+            5: "Learn and grow with your community.",
+            10: "Invest smarter together.",
         });
 
 
