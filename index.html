@@ -170,14 +170,18 @@
                 <input id="initial-amount" type="number" class="w-full border-2 border-gray-300 rounded-lg p-2 mb-4" placeholder="Enter initial amount">
 
                 <label class="block text-gray-700 mb-2">Investment Style</label>
-                <div class="flex gap-4 mb-4">
-                    <label>
-                        <input type="radio" name="investment-style" value="passive" class="mr-2" checked> Passive
+                <select id="investment-style" class="w-full border-2 border-gray-300 rounded-lg p-2 mb-4">
+                    <option value="0.06">Passive</option>
+                    <option value="0.1">Active</option>
+                </select>   
+<!--               <div class="flex gap-4 mb-4">
+                   <label>
+                        <input type="radio" name="investment-style" value="0.06" class="mr-2" checked> Passive
                     </label>
                     <label>
-                        <input type="radio" name="investment-style" value="active" class="mr-2"> Active
-                    </label>
-                </div>
+                        <input type="radio" name="investment-style" value="0.1" class="mr-2"> Active
+                    </label> 
+                </div> -->
 
                 <label class="block text-gray-700 mb-2" for="contribution-amount">Contribution Amount</label>
                 <input id="contribution-amount" type="number" class="w-full border-2 border-gray-300 rounded-lg p-2 mb-4" placeholder="Enter contribution amount">
@@ -472,20 +476,39 @@
     });
     document.querySelector(".topic-btn[data-topic='money']").click();
 
-            let chart; // ApexCharts instance
+    let chart; // ApexCharts instance
     const seriesData = []; // Array to store all series data
+    let maxYears = 0;
+    let labelCounter = 1;
 
     // Button click: Add a new line
     document.getElementById("calculate").addEventListener("click", () => {
         const initialAmount = parseFloat(document.getElementById("initial-amount").value) || 0;
         const years = parseInt(document.getElementById("years").value) || 1;
-        const labelName = `Investment ${seriesData.length + 1}`; // Unique name for each line
+        const contributionAmount = parseFloat(document.getElementById("contribution-amount").value) || 0;
+        const contributionFrequency = parseInt(document.getElementById("contribution-frequency").value) || 1; // Number of contributions per year
+        const annualRate = parseFloat(document.getElementById("investment-style").value) || 0; // Annual rate of return (as a decimal)
+        const labelName = `Investment ${labelCounter++}`; // Unique name for each line
 
-        // Generate balances for the new line
-        const balances = Array.from({ length: years }, (_, i) =>
-            Math.round(initialAmount * (1 + 0.06) ** (i + 1))
-        );
-        const labels = Array.from({ length: years }, (_, i) => `Year ${i + 1}`);
+        maxYears = Math.max(maxYears, years);
+
+        const balances = [initialAmount]; // Include Year 0 balance
+        for (let i = 1; i <= years; i++) {
+            const compoundingRate = annualRate / contributionFrequency; // Rate per period
+            const totalPeriods = contributionFrequency * i; // Total periods until year `i`
+
+            // Calculate future value of initial amount
+            const futureValueInitial = initialAmount * (1 + annualRate) ** i;
+
+            // Calculate future value of contributions
+            const futureValueContributions = contributionAmount * ((1 + compoundingRate) ** totalPeriods - 1) / compoundingRate;
+
+            // Total future value
+            balances.push(Math.round(futureValueInitial + futureValueContributions));
+        }
+
+    // Generate labels for each year
+        
 
         console.log("New Line Balances:", balances);
 
@@ -495,12 +518,15 @@
             data: balances,
         });
 
+        const labels = Array.from({ length: maxYears + 1 }, (_, i) => `Year ${i}`);
+
         if (!chart) {
             // Create the chart if it doesn't already exist
             chart = renderChart(labels, seriesData);
+            chart.updateSeries(seriesData);
         } else {
             // Update the chart with the new series
-            chart.updateSeries(seriesData);
+            chart.updateSeries(labels, seriesData);
         }
 
         // Add the new line to the delete dropdown
@@ -530,6 +556,7 @@
             }
         }
     });
+
 
     // Button click: Reset the entire chart
     document.getElementById("reset-chart").addEventListener("click", () => {
