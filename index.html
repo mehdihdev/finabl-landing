@@ -482,6 +482,8 @@
         }
 
         // Generate labels for each year
+        const labels = Array.from({ length: maxYears + 1 }, (_, i) => `Year ${i}`);
+
         console.log("New Line Balances:", balances);
 
         // Add the new series to the chart
@@ -490,15 +492,12 @@
             data: balances,
         });
 
-        const labels = Array.from({ length: maxYears + 1 }, (_, i) => `Year ${i}`);
-
         if (!chart) {
             // Create the chart if it doesn't already exist
             chart = renderChart(labels, seriesData);
-            chart.updateSeries(seriesData);
         } else {
             // Update the chart with the new series
-            chart.updateSeries(labels, seriesData);
+            chart.updateSeries(seriesData);
         }
 
         // Add the new line to the delete dropdown
@@ -528,7 +527,6 @@
             }
         }
     });
-
 
     // Button click: Reset the entire chart
     document.getElementById("reset-chart").addEventListener("click", () => {
