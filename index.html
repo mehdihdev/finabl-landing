@@ -58,7 +58,8 @@
             
             <form id="form" class="flex items-center justify-center text-center space-x-2">
                 <input type="email" id="email" placeholder="Enter your email" class="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-600">
-                <button id="submitbutton" onclick="submitfunction()" class="bg-black text-white font-semibold px-4 py-2 rounded-md hover:bg-gray-800" type="submit">Join Waiting List</button>
+                <button id="submitbutton" onclick="submitfunction()" class="bg-black text-white font-semibold px-4 py-2 rounded-md hover:bg-gray-800 hidden md:block" type="submit">Join Waiting List</button>
+                <button id="submitbutton" onclick="submitfunction()" class="bg-black text-white font-semibold px-4 py-2 rounded-md hover:bg-gray-800 sm:hidden block" type="submit">Join</button>
             </form>
             <div id="message"></div>
         </div>
