@@ -70,7 +70,7 @@
 
     <div class="grid grid-cols-1 gap-12 w-3/4 items-center">
         <!-- General Storyboard Row -->
-        <div class="grid grid-cols-2 items-center">
+        <div class="grid grid-cols-2 items-center text-left">
             <!-- Video Column -->
             <div class="border-2 border-gray-300 rounded-xl overflow-hidden w-1/2 mx-auto fade-in-out">
                 <video id="general-video" loop autoplay muted>
@@ -82,32 +82,32 @@
             <div>
                 <h2 class="text-2xl font-semibold mb-4">Re-Defining the Investing Experience</h2>
                 <p id="general-text" class="text-gray-600 italic">
-                    Dynamically changing text
+                    <!--Dynamically changing text-->
                 </p>
             </div>
         </div>
         
 
         <!-- Learn Storyboard Row -->
-        <div class="grid grid-cols-2 items-center text-right">
+        <div class="grid grid-cols-2 items-center text-left">
             <!-- Text Column -->
             <div>
                 <h2 class="text-2xl font-semibold mb-4">Duolingo-fying Investing Education</h2>
                 <p id="learn-text" class="text-gray-600 italic fade-in-out">
-                    Dynamically changing text
+                    <!--Dynamically changing text-->
                 </p>
             </div>
             <!-- Video Column -->
             <div class="border-2 border-gray-300 rounded-lg overflow-hidden w-1/2 mx-auto">
                 <video id="learn-video" loop autoplay muted>
-                    <source src="general.mp4" type="video/mp4">
+                    <source src="learnvideo.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </div>
         </div>
 
         <!-- Social Storyboard Row -->
-        <div class="grid grid-cols-2 items-center">
+        <div class="grid grid-cols-2 items-center text-left">
             <!-- Video Column -->
             <div class="border-2 border-gray-300 rounded-lg overflow-hidden w-1/2 mx-auto">
                 <video id="social-video" loop autoplay muted>
@@ -119,7 +119,7 @@
             <div>
                 <h2 class="text-2xl font-semibold mb-4">Connect and Grow with Friends & Experts</h2>
                 <p id="social-text" class="text-gray-600 italic fade-in-out">
-                    Dynamically changing text
+                    <!--Dynamically changing text-->
                 </p>
             </div>
         </div>
@@ -698,37 +698,83 @@
 
         function updateDynamicText(videoId, textId, textMap) {
             const video = document.getElementById(videoId);
-            const textElement = document.getElementById(textId);
-
+            const textContainer = document.getElementById(textId);
+        
+            // Create a list to display all text entries
+            const textList = document.createElement("ul");
+            textList.className = "space-y-2"; // Tailwind class for spacing between list items
+            textContainer.appendChild(textList);
+        
+            // Generate list items for each text entry
+            const timestamps = Object.keys(textMap).map(Number).sort((a, b) => a - b); // Sort timestamps numerically
+            timestamps.forEach((timestamp, index) => {
+                const listItem = document.createElement("li");
+                listItem.textContent = textMap[timestamp];
+                listItem.dataset.start = timestamp;
+                listItem.dataset.end = timestamps[index + 1] || Infinity; // End is the next timestamp or Infinity
+                listItem.className =
+                    "text-gray-600 text-lg transition-transform transform"; // Base Tailwind classes
+                textList.appendChild(listItem);
+            });
+        
+            // Highlight the text corresponding to the current time
             video.addEventListener("timeupdate", () => {
                 const currentTime = Math.floor(video.currentTime);
-                const text = textMap[currentTime];
-                if (text && textElement.textContent !== text) {
-                    textElement.textContent = text;
-                    //textElement.classList.remove("fade-in-out");
-                    void textElement.offsetWidth; // Trigger reflow for animation
-                    //textElement.classList.add("fade-in-out");
+        
+                // Remove highlight from all items
+                Array.from(textList.children).forEach((item) => {
+                    item.classList.remove(
+                        "font-bold",
+                        "text-black",
+                        "scale-110",
+                        //"bg-yellow-200",
+                        "rounded",
+                        "p-2"
+                    );
+                });
+        
+                // Highlight the matching item
+                const matchingItem = Array.from(textList.children).find((item) => {
+                    const start = Number(item.dataset.start);
+                    const end = Number(item.dataset.end);
+                    return currentTime >= start && currentTime < end;
+                });
+        
+                if (matchingItem) {
+                    matchingItem.classList.add(
+                        "font-bold",
+                        "text-black",
+                        "scale-110",
+                        //"bg-yellow-200",
+                        "rounded",
+                        "p-2"
+                    ); // Tailwind classes for highlighting
                 }
             });
         }
 
         // Define text changes for each video
         updateDynamicText("general-video", "general-text", {
-            0: "Experience a new way of investing.",
-            5: "Focus on growth and innovation.",
-            10: "The future of investing is here.",
+            0: "Based on your preferences, the app recommends portfolios to start with",
+            2: "Edit these portfolios and decide to real or paper trade them",
+            5: "Analyze your portfolios in a seamless fashion",
+            7: "Search stocks, and compare them easily using the comparator tool",
+            16: "Utilize the ideograph for visualizing industries and their key players"
         });
 
         updateDynamicText("learn-video", "learn-text", {
-            0: "Learning made easy and fun.",
-            5: "Step-by-step guidance for investors.",
-            10: "Master the art of investing with us.",
+            0: "Enter the Learn Hub!",
+            1: "Learn daily with bite-sized lessons",
+            2: "Read articles or watch videos on the topic",
+            6: "Answer questions to retain and move through the lesson",
+            9: "Get feedback and recommendations on your performance",
+            12: "Market Moments delivers quizzes tied to your real-time portfolio events, turning stock movements into actionable learning amounts"
         });
 
         updateDynamicText("social-video", "social-text", {
-            0: "Collaborate with verified experts.",
-            5: "Learn and grow with your community.",
-            10: "Invest smarter together.",
+            0: "Connect with friends online and invest in portfolios together",
+            8: "Chat with friends and share portfolios seamlessly",
+            21: "Reach out to verified experts and ask for advice",
         });
 
 
