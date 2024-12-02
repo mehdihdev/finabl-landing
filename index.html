@@ -30,7 +30,6 @@
       </nav>
       
     <section id="home" class="relative flex flex-col items-center justify-center text-center bg-gradient-to-r from-indigo-200 via-white to-indigo-200 h-screen px-8 md:pt-12">
-
         <div id="notification" class="hidden fixed top-4 right-4 bg-blue shadow-md rounded-md border border-green-300 flex items-center p-4 space-x-2">
             <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -70,9 +69,9 @@
 
     <div class="grid grid-cols-1 gap-12 w-3/4 items-center">
         <!-- General Storyboard Row -->
-        <div class="grid grid-cols-2 items-center text-left">
+        <div class="grid grid-cols-1 lg:grid-cols-2 items-center text-left">
             <!-- Video Column -->
-            <div class="border-2 border-gray-300 rounded-xl overflow-hidden w-1/2 mx-auto fade-in-out">
+            <div class="border-2 border-gray-300 rounded-xl overflow-hidden lg:w-1/2 w-full mx-auto fade-in-out mb-5 lg:mb-0">
                 <video id="general-video" loop autoplay muted>
                     <source src="general.mp4" type="video/mp4">
                     Your browser does not support the video tag.
@@ -89,16 +88,16 @@
         
 
         <!-- Learn Storyboard Row -->
-        <div class="grid grid-cols-2 items-center text-left">
+        <div class="grid grid-cols-1 lg:grid-cols-2 items-center text-left">
             <!-- Text Column -->
-            <div>
+            <div class="order-last lg:order-first">
                 <h2 class="text-2xl font-semibold mb-4">Duolingo-fying Investing Education</h2>
                 <p id="learn-text" class="text-gray-600 italic fade-in-out">
                     <!--Dynamically changing text-->
                 </p>
             </div>
             <!-- Video Column -->
-            <div class="border-2 border-gray-300 rounded-lg overflow-hidden w-1/2 mx-auto">
+            <div class="border-2 border-gray-300 rounded-lg overflow-hidden lg:w-1/2 w-full mx-auto mb-5 lg:mb-0">
                 <video id="learn-video" loop autoplay muted>
                     <source src="learnvideo.mp4" type="video/mp4">
                     Your browser does not support the video tag.
@@ -107,9 +106,9 @@
         </div>
 
         <!-- Social Storyboard Row -->
-        <div class="grid grid-cols-2 items-center text-left">
+        <div class="grid grid-cols-1 lg:grid-cols-2 items-center text-left">
             <!-- Video Column -->
-            <div class="border-2 border-gray-300 rounded-lg overflow-hidden w-1/2 mx-auto">
+            <div class="border-2 border-gray-300 rounded-lg overflow-hidden lg:w-1/2 w-full mx-auto mb-5 lg:mb-0">
                 <video id="social-video" loop autoplay muted>
                     <source src="friendsvideo.mp4" type="video/mp4">
                     Your browser does not support the video tag.
