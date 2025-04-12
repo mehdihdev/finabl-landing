@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finabl - A Social and Educational Investing Platform</title>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NNZ24M95GF"></script>
+<script>
+  function openModal() {
+    const modal = document.getElementById('investmentModal');
+    modal.classList.remove('pointer-events-none');
+    modal.classList.remove('opacity-0');
+    modal.classList.add('opacity-100');
+  }
+
+  function closeModal() {
+    const modal = document.getElementById('investmentModal');
+    modal.classList.remove('opacity-100');
+    modal.classList.add('opacity-0');
+    setTimeout(() => modal.classList.add('pointer-events-none'), 300);
+  }
+</script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-NNZ24M95GF');
+  </script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/ea12dcf2e6.js" crossorigin="anonymous"></script>
+  <style>
+    .blur-nav {
+      backdrop-filter: blur(12px);
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+    .section-bg {
+      background: linear-gradient(to right, #1e293b, #0f172a);
+    }
+    .card-bg {
+      background-color: #1e293b;
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-white">
+  <!-- Navigation Bar -->
+  <header class="w-full fixed top-0 z-50 blur-nav text-white">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <!-- Logo -->
+      <div class="flex items-center space-x-2">
+        <img src="elephant head.svg" alt="Finabl Logo" class="w-10 h-10" />
+        <span class="font-semibold text-lg">Finabl</span>
+      </div>
+      <!-- Nav Links -->
+      <nav class="hidden md:flex space-x-6 bg-white/5 px-6 py-2 rounded-full text-sm font-medium">
+        <a href="#home" class="hover:text-white text-gray-300">Home</a>
+        <a href="#how-it-works" class="hover:text-white text-gray-300">How It Works</a>
+        <a href="#early-edge" class="hover:text-white text-gray-300">Early Edge</a>
+        <a href="#features" class="hover:text-white text-gray-300">Features</a>
+      </nav>
+      <!-- Auth CTA -->
+      <div class="flex items-center space-x-4">
+        <a href="#" class="text-sm text-white hover:underline">Login</a>
+        <a href="#" class="bg-gradient-to-r from-purple-500 to-indigo-500 text-sm px-4 py-2 rounded-md font-medium hover:opacity-90">Start free trial</a>
+      </div>
+    </div>
+  </header>
+  <div class="pt-16"></div>
+
+  <!-- Hero Section -->
+  <section id="home" class="text-center py-32 px-6 bg-gradient-to-br from-black via-gray-900 to-gray-800">
+    <img src="app icon.png" class="mx-auto w-20 mb-6">
+    <h1 class="text-4xl md:text-6xl font-bold mb-6">Finabl: The platform for <span class="text-indigo-400">smart investing</span></h1>
+    <p class="max-w-2xl mx-auto text-lg text-gray-300 mb-8">
+      Empowering the next generation of investors with social tools, bite-sized learning, and tuition rewards.
+    </p>
+    <form id="form" class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <input type="email" placeholder="Enter your email" class="px-4 py-2 w-64 border border-gray-300 rounded-md text-black" required>
+      <button type="submit" class="bg-indigo-600 text-white px-6 py-2 rounded-md font-semibold hover:bg-indigo-500">Join Waiting List</button>
+    </form>
+  </section>
+
+  <!-- How It Works -->
+  <section id="how-it-works" class="section-bg py-24 px-6 text-center">
+    <h2 class="text-3xl font-bold mb-12">How It Works</h2>
+    <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-12">
+      <div class="card-bg rounded-xl p-6 shadow-lg">
+          <i class="fas fa-book-reader fa-2x mb-3 text-indigo-400"></i>
+          <h3 class="text-xl font-semibold mb-3">Learn</h3>
+        <p class="text-gray-300">Engage with Duolingo-style lessons and bite-sized content that simplifies finance.</p>
+      </div>
+      <div class="card-bg rounded-xl p-6 shadow-lg">
+          <i class="fas fa-laptop-code fa-2x mb-3 text-indigo-400"></i>
+          <h3 class="text-xl font-semibold mb-3">Practice</h3>
+        <p class="text-gray-300">Use paper trading and interactive simulations to build confidence without risk.</p>
+      </div>
+      <div class="card-bg rounded-xl p-6 shadow-lg">
+          <i class="fas fa-piggy-bank fa-2x mb-3 text-indigo-400"></i>
+          <h3 class="text-xl font-semibold mb-3">Invest</h3>
+        <p class="text-gray-300">Start investing with $1 and earn real tuition rewards by making smart decisions.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Early Edge -->
+  <section id="early-edge" class="py-24 px-6 bg-gradient-to-br from-indigo-900 to-indigo-700 text-center">
+    <h2 class="text-3xl font-bold mb-12">Why Start Young?</h2>
+    <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-8 text-left">
+      <div>
+          <i class="fas fa-chart-line fa-lg text-indigo-400 mb-2"></i>
+          <h3 class="text-xl font-semibold mb-2">1. Compound Growth</h3>
+        <p class="text-gray-200">The earlier you begin, the more your money works for you. Time multiplies your investments.</p>
+      </div>
+      <div>
+          <i class="fas fa-seedling fa-lg text-indigo-400 mb-2"></i>
+          <h3 class="text-xl font-semibold mb-2">2. Prepare for Life</h3>
+        <p class="text-gray-200">Whether it's college, a home, or travel—build the financial foundation for your dreams early.</p>
+      </div>
+      <div>
+          <i class="fas fa-lightbulb fa-lg text-indigo-400 mb-2"></i>
+          <h3 class="text-xl font-semibold mb-2">3. Maximize Opportunity</h3>
+        <p class="text-gray-200">Identify and invest in emerging industries before they become mainstream.</p>
+      </div>
+    </div>
+  <div class="text-center mt-12">
+    <button onclick="openModal()" class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-6 py-3 rounded-full">
+      Try the Investment Growth Calculator
+    </button>
+  </div>
+
+  <!-- Investment Modal -->
+  <div id="investmentModal" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 transition-opacity duration-300 opacity-0 pointer-events-none">
+    <div class="bg-white text-black rounded-lg shadow-xl p-8 w-full max-w-lg relative">
+      <button onclick="closeModal()" class="absolute top-2 right-4 text-black text-xl">&times;</button>
+      <h3 class="text-2xl font-bold mb-6 text-center">Investment Growth Calculator</h3>
+      <form id="calculatorForm" class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium">Initial Amount ($)</label>
+          <input type="number" id="initialAmount" class="w-full border border-gray-300 rounded p-2" required>
+        </div>
+        <div>
+          <label class="block text-sm font-medium">Monthly Contribution ($)</label>
+          <input type="number" id="monthlyContribution" class="w-full border border-gray-300 rounded p-2" required>
+        </div>
+        <div>
+          <label class="block text-sm font-medium">Years to Invest</label>
+          <input type="number" id="years" class="w-full border border-gray-300 rounded p-2" required>
+        </div>
+        <div class="text-center">
+          <button type="submit" class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-6 py-2 rounded">Calculate</button>
+        </div>
+      </form>
+      <div id="chartResult" class="mt-8 hidden">
+        <canvas id="growthChart" height="300"></canvas>
+      </div>
+    </div>
+  </div>
+
+</section>
+<!-- Features -->
+  <section id="features" class="section-bg py-24 px-6 text-center">
+    <h2 class="text-3xl font-bold mb-12">Features That Matter</h2>
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="card-bg p-6 rounded-xl">
+        <i class="fas fa-coins fa-2x mb-3 text-indigo-400"></i>
+        <h3 class="font-semibold text-xl">Fractional Investing</h3>
+        <p class="text-gray-300">Invest with as little as $1 in diversified portfolios.</p>
+      </div>
+      <div class="card-bg p-6 rounded-xl">
+        <i class="fas fa-chalkboard-teacher fa-2x mb-3 text-indigo-400"></i>
+        <h3 class="font-semibold text-xl">Gamified Education</h3>
+        <p class="text-gray-300">Interactive lessons that make financial literacy fun and sticky.</p>
+      </div>
+      <div class="card-bg p-6 rounded-xl">
+        <i class="fas fa-graduation-cap fa-2x mb-3 text-indigo-400"></i>
+        <h3 class="font-semibold text-xl">Tuition Rewards</h3>
+        <p class="text-gray-300">Earn credits toward tuition by learning and investing consistently.</p>
+      </div>
+      <div class="card-bg p-6 rounded-xl">
+        <i class="fas fa-user-friends fa-2x mb-3 text-indigo-400"></i>
+        <h3 class="font-semibold text-xl">Social Investing</h3>
+        <p class="text-gray-300">Create portfolios with friends and track each other's progress.</p>
+      </div>
+      <div class="card-bg p-6 rounded-xl">
+        <i class="fas fa-bell fa-2x mb-3 text-indigo-400"></i>
+        <h3 class="font-semibold text-xl">Real-Time Alerts</h3>
+        <p class="text-gray-300">Stay updated with live portfolio alerts, performance tips, and reminders.</p>
+      </div>
+      <div class="card-bg p-6 rounded-xl">
+        <i class="fas fa-brain fa-2x mb-3 text-indigo-400"></i>
+        <h3 class="font-semibold text-xl">AI Advisor</h3>
+        <p class="text-gray-300">Get personalized suggestions from our intelligent portfolio assistant.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-black text-gray-500 py-8 text-center">
+    <p>&copy; 2025 Finabl. All rights reserved.</p>
+  </footer>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- CLEANED & FIXED FINAL SCRIPT VERSION -->
+<script>
+  document.getElementById('calculatorForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const initial = parseFloat(document.getElementById('initialAmount').value);
+    const contribution = parseFloat(document.getElementById('monthlyContribution').value);
+    const years = parseInt(document.getElementById('years').value);
+    const rate = 0.08 / 12;
+    const months = years * 12;
+
+    let balances = [];
+    let labels = [];
+    let value = initial;
+
+    for (let i = 0; i <= months; i++) {
+      value = value * (1 + rate) + contribution;
+      if (i % 12 === 0) {
+        balances.push(Math.round(value));
+        labels.push(`Year ${i / 12}`);
+      }
+    }
+
+    if (!window.chartData) window.chartData = { datasets: [], labels: [] };
+    const datasetIndex = window.chartData.datasets.length + 1;
+    const newDataset = {
+      label: `Projection ${datasetIndex}`,
+      data: balances,
+      borderColor: `hsl(${Math.random() * 360}, 70%, 60%)`,
+      backgroundColor: 'rgba(99,102,241,0.2)',
+      tension: 0.4
+    };
+    window.chartData.datasets.push(newDataset);
+    window.chartData.labels = labels;
+
+    const chartContainer = document.getElementById('chartResult');
+    let canvas = document.getElementById('growthChart');
+    let ctx = canvas.getContext('2d');
+
+    if (!window.growthChart || typeof window.growthChart.update !== 'function') {
+      window.growthChart = new Chart(ctx, {
+        type: 'line',
+        data: window.chartData,
+        options: {
+          responsive: true,
+          onClick: (e, elements) => {
+            if (elements.length > 0) {
+              const i = elements[0].datasetIndex;
+              window.chartData.datasets.splice(i, 1);
+
+              // Remove old canvas and insert new
+              canvas.remove();
+              canvas = document.createElement('canvas');
+              canvas.id = 'growthChart';
+              canvas.height = 300;
+              chartContainer.appendChild(canvas);
+              ctx = canvas.getContext('2d');
+
+              // If empty, skip chart creation
+              if (window.chartData.datasets.length === 0) {
+                window.growthChart = null;
+                return;
+              }
+
+              window.growthChart = new Chart(ctx, {
+                type: 'line',
+                data: window.chartData,
+                options: {
+                  responsive: true,
+                  onClick: () => {},
+                  scales: {
+                    y: {
+                      beginAtZero: true,
+                      ticks: {
+                        callback: val => '$' + val.toLocaleString()
+                      }
+                    }
+                  }
+                }
+              });
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                callback: val => '$' + val.toLocaleString()
+              }
+            }
+          }
+        }
+      });
+      window.chartOptions = window.growthChart.options;
+    } else {
+      window.growthChart.update();
+    }
+
+    document.getElementById('chartResult').classList.remove('hidden');
+  });
+</script>
+
+</body>
+</html>
