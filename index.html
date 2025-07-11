@@ -1,790 +1,307 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNZ24M95GF"></script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finabl - A Social and Educational Investing Platform</title>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NNZ24M95GF"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  function openModal() {
+    const modal = document.getElementById('investmentModal');
+    modal.classList.remove('pointer-events-none');
+    modal.classList.remove('opacity-0');
+    modal.classList.add('opacity-100');
+  }
 
-  gtag('config', 'G-NNZ24M95GF');
+  function closeModal() {
+    const modal = document.getElementById('investmentModal');
+    modal.classList.remove('opacity-100');
+    modal.classList.add('opacity-0');
+    setTimeout(() => modal.classList.add('pointer-events-none'), 300);
+  }
 </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Finabl - A Social and Educational Investing Platform</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    <script src="https://kit.fontawesome.com/ea12dcf2e6.js" crossorigin="anonymous"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-NNZ24M95GF');
+  </script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/ea12dcf2e6.js" crossorigin="anonymous"></script>
+  <style>
+    .blur-nav {
+      backdrop-filter: blur(12px);
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+    .section-bg {
+      background: linear-gradient(to right, #1e293b, #0f172a);
+    }
+    .card-bg {
+      background-color: #1e293b;
+    }
+  </style>
 </head>
-<body class="bg-sky-800">
-
-    <!-- Hero Section -->
-    <nav class="hidden lg:block backdrop-blur-5xl shadow-sm fixed top-4 left-1/2 transform -translate-x-1/2 z-50 rounded-full px-8 py-3" style="background-color: rgba(186 ,230, 253,0.5); backdrop-filter: blur(10px);">
-        <div class="flex justify-center items-center space-x-6" >
-          <!-- Logo -->
-          <div class="flex items-center">
-            <img src="elephant head.svg" alt="Finabl Logo" class="w-16 h-16">
-          </div>
-      
-          <!-- Navigation Links -->
-          <ul class="flex space-x-6 text-gray-600">
-            <li><a href="#home" class="hover:text-gray-800">Home</a></li>
-            <li><a href="#how-it-works" class="hover:text-gray-800">How It Works</a></li>
-            <li><a href="#early-edge" class="hover:text-gray-800">Early Edge</a></li>
-            <li><a href="#features" class="hover:text-gray-800">Features</a></li>
-          </ul>
-        </div>
+<body class="bg-gray-900 text-white">
+  <!-- Navigation Bar -->
+  <header class="w-full fixed top-0 z-50 blur-nav text-white">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <!-- Logo -->
+      <div class="flex items-center space-x-2">
+        <img src="elephant head.svg" alt="Finabl Logo" class="w-10 h-10" />
+        <span class="font-semibold text-lg">Finabl</span>
+      </div>
+      <!-- Nav Links -->
+      <nav class="hidden md:flex space-x-6 bg-white/5 px-6 py-2 rounded-full text-sm font-medium">
+        <a href="#home" class="hover:text-white text-gray-300">Home</a>
+        <a href="#how-it-works" class="hover:text-white text-gray-300">How It Works</a>
+        <a href="#early-edge" class="hover:text-white text-gray-300">Early Edge</a>
+        <a href="#features" class="hover:text-white text-gray-300">Features</a>
       </nav>
-      
-    <section id="home" class="relative flex flex-col items-center justify-center text-center bg-gradient-to-r from-indigo-200 via-white to-indigo-200 h-screen px-8 md:pt-12">
-        <div id="notification" class="hidden fixed top-4 right-4 bg-blue shadow-md rounded-md border border-green-300 flex items-center p-4 space-x-2">
-            <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-            <div>
-                <p class="font-semibold text-green-700">Waiting list joined!</p>
-                <p class="text-sm text-gray-500">Thank you for joining the waiting list!</p>
-            </div>
-        </div>
-        <canvas id="threejs-canvas" class="absolute inset-0 z-0"></canvas>
-        <div class="absolute inset-0 bg-gradient-radial from-black-700 to-transparent opacity-30"></div>
-        <img src="app icon.png" class="object-fit w-48 mb-5 mt-12">
-        <h1 class="text-5xl font-bold text-black mb-4 animate-fade-in">
-            Finabl: The platform for <span id="typed-text"></span>
-        </h1>
-        
-        <div class="relative z-10 lg:w-1/2 md:w-3/4 sm:w-full animate-fade-in">
-
-            <p class="text-lg text-gray-700 mb-8">
-                We’re empowering the next generation of investors to make smarter 
-                financial decisions through a social, educational, and beginner-friendly experience.
-                <span class="font-bold">Join the waiting list today to get your first 2 months free.</span> 
-            </p>
-            
-            
-            <form id="form" class="flex items-center justify-center text-center space-x-2">
-                <input type="email" id="email" placeholder="Enter your email" class="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-600">
-                <button id="submitbutton" onclick="submitfunction()" class="bg-black text-white font-semibold px-4 py-2 rounded-md hover:bg-gray-800 hidden md:block" type="submit">Join Waiting List</button>
-                <button id="submitbutton" onclick="submitfunction()" class="bg-black text-white font-semibold px-4 py-2 rounded-md hover:bg-gray-800 sm:hidden block" type="submit">Join</button>
-            </form>
-            <div id="message"></div>
-        </div>
-        <img src="qrcode.png" class="object-fit w-48 m-5 hidden lg:block">
-    </section>
-<section id="how-it-works" class="relative flex flex-col justify-center items-center bg-gradient-to-r from-indigo-200 via-white to-indigo-200">
-    <h1 class="text-4xl font-bold text-center mb-12 mt-12">How It Works</h1>
-
-    <div class="grid grid-cols-1 gap-12 w-3/4 items-center">
-        <!-- General Storyboard Row -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 items-center text-left">
-            <!-- Video Column -->
-            <div class="border-2 border-gray-300 rounded-xl overflow-hidden lg:w-1/2 w-full mx-auto fade-in-out mb-5 lg:mb-0">
-                <video id="general-video" loop autoplay muted playsinline>
-                    <source src="general.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-            <!-- Text Column -->
-            <div>
-                <h2 class="text-2xl font-semibold mb-4">Re-Defining the Investing Experience</h2>
-                <p id="general-text" class="text-gray-600 italic">
-                    <!--Dynamically changing text-->
-                </p>
-            </div>
-        </div>
-        
-
-        <!-- Learn Storyboard Row -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 items-center text-left">
-            <!-- Text Column -->
-            <div class="order-last lg:order-first">
-                <h2 class="text-2xl font-semibold mb-4">Duolingo-fying Investing Education</h2>
-                <p id="learn-text" class="text-gray-600 italic fade-in-out">
-                    <!--Dynamically changing text-->
-                </p>
-            </div>
-            <!-- Video Column -->
-            <div class="border-2 border-gray-300 rounded-lg overflow-hidden lg:w-1/2 w-full mx-auto mb-5 lg:mb-0">
-                <video id="learn-video" loop autoplay muted playsinline>
-                    <source src="learnvideo.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-        </div>
-
-        <!-- Social Storyboard Row -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 items-center text-left">
-            <!-- Video Column -->
-            <div class="border-2 border-gray-300 rounded-lg overflow-hidden lg:w-1/2 w-full mx-auto mb-5 lg:mb-0">
-                <video id="social-video" loop autoplay muted playsinline>
-                    <source src="friendsvideo.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-            <!-- Text Column -->
-            <div>
-                <h2 class="text-2xl font-semibold mb-4">Connect and Grow with Friends & Experts</h2>
-                <p id="social-text" class="text-gray-600 italic fade-in-out">
-                    <!--Dynamically changing text-->
-                </p>
-            </div>
-        </div>
+      <!-- Auth CTA -->
+      <div class="flex items-center space-x-4">
+        <a href="#" class="text-sm text-white hover:underline">Login</a>
+        <a href="#" class="bg-gradient-to-r from-purple-500 to-indigo-500 text-sm px-4 py-2 rounded-md font-medium hover:opacity-90">Start free trial</a>
+      </div>
     </div>
-</section>
+  </header>
+  <div class="pt-16"></div>
 
+  <!-- Hero Section -->
+  <section id="home" class="text-center py-32 px-6 bg-gradient-to-br from-black via-gray-900 to-gray-800">
+    <img src="app icon.png" class="mx-auto w-20 mb-6">
+    <h1 class="text-4xl md:text-6xl font-bold mb-6">Finabl: The platform for <span class="text-indigo-400">smart investing</span></h1>
+    <p class="max-w-2xl mx-auto text-lg text-gray-300 mb-8">
+      Empowering the next generation of investors with social tools, bite-sized learning, and tuition rewards.
+    </p>
+    <form id="form" class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <input type="email" placeholder="Enter your email" class="px-4 py-2 w-64 border border-gray-300 rounded-md text-black" required>
+      <button type="submit" class="bg-indigo-600 text-white px-6 py-2 rounded-md font-semibold hover:bg-indigo-500">Join Waiting List</button>
+    </form>
+  </section>
 
+  <!-- How It Works -->
+  <section id="how-it-works" class="section-bg py-24 px-6 text-center">
+    <h2 class="text-3xl font-bold mb-12">How It Works</h2>
+    <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-12">
+      <div class="card-bg rounded-xl p-6 shadow-lg">
+          <i class="fas fa-book-reader fa-2x mb-3 text-indigo-400"></i>
+          <h3 class="text-xl font-semibold mb-3">Learn</h3>
+        <p class="text-gray-300">Engage with Duolingo-style lessons and bite-sized content that simplifies finance.</p>
+      </div>
+      <div class="card-bg rounded-xl p-6 shadow-lg">
+          <i class="fas fa-laptop-code fa-2x mb-3 text-indigo-400"></i>
+          <h3 class="text-xl font-semibold mb-3">Practice</h3>
+        <p class="text-gray-300">Use paper trading and interactive simulations to build confidence without risk.</p>
+      </div>
+      <div class="card-bg rounded-xl p-6 shadow-lg">
+          <i class="fas fa-piggy-bank fa-2x mb-3 text-indigo-400"></i>
+          <h3 class="text-xl font-semibold mb-3">Invest</h3>
+        <p class="text-gray-300">Start investing with $1 and earn real tuition rewards by making smart decisions.</p>
+      </div>
+    </div>
+  </section>
 
+  <!-- Early Edge -->
+  <section id="early-edge" class="py-24 px-6 bg-gradient-to-br from-indigo-900 to-indigo-700 text-center">
+    <h2 class="text-3xl font-bold mb-12">Why Start Young?</h2>
+    <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-8 text-left">
+      <div>
+          <i class="fas fa-chart-line fa-lg text-indigo-400 mb-2"></i>
+          <h3 class="text-xl font-semibold mb-2">1. Compound Growth</h3>
+        <p class="text-gray-200">The earlier you begin, the more your money works for you. Time multiplies your investments.</p>
+      </div>
+      <div>
+          <i class="fas fa-seedling fa-lg text-indigo-400 mb-2"></i>
+          <h3 class="text-xl font-semibold mb-2">2. Prepare for Life</h3>
+        <p class="text-gray-200">Whether it's college, a home, or travel—build the financial foundation for your dreams early.</p>
+      </div>
+      <div>
+          <i class="fas fa-lightbulb fa-lg text-indigo-400 mb-2"></i>
+          <h3 class="text-xl font-semibold mb-2">3. Maximize Opportunity</h3>
+        <p class="text-gray-200">Identify and invest in emerging industries before they become mainstream.</p>
+      </div>
+    </div>
+  <div class="text-center mt-12">
+    <button onclick="openModal()" class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-6 py-3 rounded-full">
+      Try the Investment Growth Calculator
+    </button>
+  </div>
 
-<section id="early-edge" class="relative flex flex-col items-center justify-center bg-gradient-to-r from-indigo-200 via-white to-indigo-200 p-12">
-    <h1 class="text-4xl font-bold text-center mb-12 mt-12">Early Edge</h1>
-    
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:w-3/4 w-full">
-        <!-- Left Content -->
+  <!-- Investment Modal -->
+  <div id="investmentModal" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 transition-opacity duration-300 opacity-0 pointer-events-none">
+    <div class="bg-white text-black rounded-lg shadow-xl p-8 w-full max-w-lg relative">
+      <button onclick="closeModal()" class="absolute top-2 right-4 text-black text-xl">&times;</button>
+      <h3 class="text-2xl font-bold mb-6 text-center">Investment Growth Calculator</h3>
+      <form id="calculatorForm" class="space-y-4">
         <div>
-            <h2 class="text-3xl font-bold mb-12">Why Start Young...</h2>
-            <div class="mb-6">
-                <h2 class="text-2xl font-semibold mb-4">1. Time is Your Biggest Ally</h2>
-                <p class="text-gray-600">Starting young allows you to harness compound growth, take calculated risks, build lifelong financial habits, and achieve financial independence.</p>
-            </div>
-            <div class="mb-6">
-                <h2 class="text-2xl font-semibold mb-4">2. Prepare for Life's Big Moment</h2>
-                <p class="text-gray-600">Start building a fund with passive income for future goals like university, a home, travel, or business ventures.</p>
-            </div>
-            <div class="mb-6">
-                <h2 class="text-2xl font-semibold mb-4">3. Capitalize on Opportunities</h2>
-                <p class="text-gray-600">Most industries are currently booming with the advent of new technologies, understanding which companies to invest in will build monumental wealth.</p>
-            </div>
+          <label class="block text-sm font-medium">Initial Amount ($)</label>
+          <input type="number" id="initialAmount" class="w-full border border-gray-300 rounded p-2" required>
         </div>
-
-        <!-- Right Content -->
-        <div class="sm:w-full">
-            <div class="bg-white shadow-lg rounded-lg p-6">
-                <h2 class="text-2xl font-semibold mb-4">Investment Growth Calculator</h2>
-
-                <label class="block text-gray-700 mb-2" for="initial-amount">Initial Amount</label>
-                <input id="initial-amount" type="number" class="w-full border-2 border-gray-300 rounded-lg p-2 mb-4" placeholder="Enter initial amount">
-
-                <label class="block text-gray-700 mb-2">Investment Style</label>
-                <select id="investment-style" class="w-full border-2 border-gray-300 rounded-lg p-2 mb-4">
-                    <option value="0.06">Passive</option>
-                    <option value="0.1">Active</option>
-                </select>   
-
-                <label class="block text-gray-700 mb-2" for="contribution-amount">Contribution Amount</label>
-                <input id="contribution-amount" type="number" class="w-full border-2 border-gray-300 rounded-lg p-2 mb-4" placeholder="Enter contribution amount">
-
-                <label class="block text-gray-700 mb-2" for="contribution-frequency">Contribution Frequency</label>
-                <select id="contribution-frequency" class="w-full border-2 border-gray-300 rounded-lg p-2 mb-4">
-                    <option value="12">Monthly</option>
-                    <option value="4">Quarterly</option>
-                    <option value="1">Annually</option>
-                </select>
-
-                <label class="block text-gray-700 mb-2" for="years">Years to Invest</label>
-                <input id="years" type="number" class="w-full border-2 border-gray-300 rounded-lg p-2 mb-4" placeholder="Enter number of years">
-
-                <button id="calculate" class="w-full bg-blue-600 text-white font-semibold py-2 rounded-lg">Calculate</button>
-            </div>
+        <div>
+          <label class="block text-sm font-medium">Monthly Contribution ($)</label>
+          <input type="number" id="monthlyContribution" class="w-full border border-gray-300 rounded p-2" required>
         </div>
+        <div>
+          <label class="block text-sm font-medium">Years to Invest</label>
+          <input type="number" id="years" class="w-full border border-gray-300 rounded p-2" required>
+        </div>
+        <div class="text-center">
+          <button type="submit" class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-6 py-2 rounded">Calculate</button>
+        </div>
+      </form>
+      <div id="chartResult" class="mt-8 hidden">
+        <canvas id="growthChart" height="300"></canvas>
+      </div>
     </div>
-    <div class="mt-8 w-full md:w-3/4">
-        <div id="investment-chart" class="w-full h-64"></div>                    
-        <div id="controls-container" class="hidden mt-4">
-            <label for="delete-line-select" class="block text-gray-700 mb-2">Delete Line</label>
-            <div class="flex items-center space-x-4">
-                <select id="delete-line-select" class="border-2 border-gray-300 rounded-lg p-2">
-                    <!-- Options will be dynamically added -->
-                </select>
-                <button id="delete-line" class="bg-red-600 text-white font-semibold py-2 px-4 rounded-lg">
-                    Delete Line
-                </button>
-                <button id="reset-chart" class="bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg">
-                    Reset Chart
-                </button>
-            </div>
-        </div>
-    </div>
+  </div>
+
 </section>
-
-<section id="features" class="relative flex flex-col items-center justify-center bg-gradient-to-r from-indigo-200 via-white to-indigo-200 p-12">
-    <h1 class="text-4xl font-bold text-center mb-4">Features</h1>
-    <p class="mb-4">Feel like you don't have enough...</p>
-
-    <!-- Topic Selection Buttons -->
-    <div class="flex flex-wrap justify-center gap-4 mb-8 lg:w-1/2 md:w-3/4 sm:w-full">
-        <button class="topic-btn bg-gray-200 text-black px-4 py-2 rounded-md hover:bg-gray-300 focus:bg-gray-400" data-topic="money">Money?</button>
-        <button class="topic-btn bg-gray-200 text-black px-4 py-2 rounded-md hover:bg-gray-300 focus:bg-gray-400" data-topic="time">Time?</button>
-        <button class="topic-btn bg-gray-200 text-black px-4 py-2 rounded-md hover:bg-gray-300 focus:bg-gray-400" data-topic="education">Education?</button>
-        <button class="topic-btn bg-gray-200 text-black px-4 py-2 rounded-md hover:bg-gray-300 focus:bg-gray-400" data-topic="interest">Interest?</button>
+<!-- Features -->
+  <section id="features" class="section-bg py-24 px-6 text-center">
+    <h2 class="text-3xl font-bold mb-12">Features That Matter</h2>
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="card-bg p-6 rounded-xl">
+        <i class="fas fa-coins fa-2x mb-3 text-indigo-400"></i>
+        <h3 class="font-semibold text-xl">Fractional Investing</h3>
+        <p class="text-gray-300">Invest with as little as $1 in diversified portfolios.</p>
+      </div>
+      <div class="card-bg p-6 rounded-xl">
+        <i class="fas fa-chalkboard-teacher fa-2x mb-3 text-indigo-400"></i>
+        <h3 class="font-semibold text-xl">Gamified Education</h3>
+        <p class="text-gray-300">Interactive lessons that make financial literacy fun and sticky.</p>
+      </div>
+      <div class="card-bg p-6 rounded-xl">
+        <i class="fas fa-graduation-cap fa-2x mb-3 text-indigo-400"></i>
+        <h3 class="font-semibold text-xl">Tuition Rewards</h3>
+        <p class="text-gray-300">Earn credits toward tuition by learning and investing consistently.</p>
+      </div>
+      <div class="card-bg p-6 rounded-xl">
+        <i class="fas fa-user-friends fa-2x mb-3 text-indigo-400"></i>
+        <h3 class="font-semibold text-xl">Social Investing</h3>
+        <p class="text-gray-300">Create portfolios with friends and track each other's progress.</p>
+      </div>
+      <div class="card-bg p-6 rounded-xl">
+        <i class="fas fa-bell fa-2x mb-3 text-indigo-400"></i>
+        <h3 class="font-semibold text-xl">Real-Time Alerts</h3>
+        <p class="text-gray-300">Stay updated with live portfolio alerts, performance tips, and reminders.</p>
+      </div>
+      <div class="card-bg p-6 rounded-xl">
+        <i class="fas fa-brain fa-2x mb-3 text-indigo-400"></i>
+        <h3 class="font-semibold text-xl">AI Advisor</h3>
+        <p class="text-gray-300">Get personalized suggestions from our intelligent portfolio assistant.</p>
+      </div>
     </div>
+  </section>
 
-    <!-- Features Grid -->
-    <div id="features-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-3/4 grid-auto-rows-minmax">
-        <!-- Money ones -->
-        <div class="feature-item text-white rounded-xl items-center content-center p-4 animate-slide-in-bottom hover:shadow-lg" style="background-color: #304550;" data-topic="money">
-            <i class="fa-solid fa-chart-pie fa-3x"></i>
-            <h2 class="text-xl font-semibold mt-4">Fractional Investment</h2>
-            <p class="text-gray-400">Start investing with as little as $1.</p>
-        </div>
-        <div class="feature-item text-white rounded-xl items-center content-center p-4 animate-slide-in-bottom hover:shadow-lg" style="background-color: #304550;" data-topic="money">
-            <i class="fa-solid fa-chart-column fa-3x"></i>
-            <h2 class="text-xl font-semibold mt-4">Thematic Portfolios</h2>
-            <p class="text-gray-400">Pre-designed portfolios that could align with specifically your budget.</p>
-        </div>
-        <div class="feature-item text-white rounded-xl items-center content-center p-4 animate-slide-in-bottom hover:shadow-lg" style="background-color: #304550;" data-topic="money">
-            <i class="fa-solid fa-copy fa-3x"></i>
-            <h2 class="text-xl font-semibold mt-4">Paper Trading</h2>
-            <p class="text-gray-400">Practice investing without using real money in a simulator that follows real-market data.</p>
-        </div>
-        <div class="feature-item text-white rounded-xl items-center content-center p-4 animate-slide-in-bottom hover:shadow-lg" style="background-color: #304550;" data-topic="money">
-            <i class="fa-solid fa-wallet fa-3x"></i>
-            <h2 class="text-xl font-semibold mt-4">Budget-Friendly Access</h2>
-            <p class="text-gray-400">Access a full suite of educational and analysis tools, AI-powered insights, and an investing community for as little as $2/month or $15/year</p>
-        </div>
-        <div class="feature-item text-white rounded-xl items-center content-center p-4 animate-slide-in-bottom hover:shadow-lg" style="background-color: #304550;" data-topic="money">
-            <i class="fa-solid fa-credit-card fa-3x"></i>
-            <h2 class="text-xl font-semibold mt-4">Seamless Integration with Payment Services</h2>
-            <p class="text-gray-400">Effortlessly connect your investments to payment platforms, allowing you to cash out and spend your earnings instantly.</p>
-        </div>
-        <div class="feature-item text-white rounded-xl items-center content-center p-4 animate-slide-in-bottom hover:shadow-lg" style="background-color: #304550;" data-topic="money">
-            <i class="fa-solid fa-piggy-bank fa-3x"></i>
-            <h2 class="text-xl font-semibold mt-4">Smart Savings Automation</h2>
-            <p class="text-gray-400">Set aside spare change or small amounts to build your investment portfolio over time without feeling the pinch.</p>
-        </div>
+  <!-- Footer -->
+  <footer class="bg-black text-gray-500 py-8 text-center">
+    <p>&copy; 2025 Finabl. All rights reserved.</p>
+  </footer>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- CLEANED & FIXED FINAL SCRIPT VERSION -->
+<script>
+  document.getElementById('calculatorForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const initial = parseFloat(document.getElementById('initialAmount').value);
+    const contribution = parseFloat(document.getElementById('monthlyContribution').value);
+    const years = parseInt(document.getElementById('years').value);
+    const rate = 0.08 / 12;
+    const months = years * 12;
 
+    let balances = [];
+    let labels = [];
+    let value = initial;
 
-        <!-- Time ones -->
-        <div class="feature-item text-white rounded-xl items-center content-center p-4 animate-slide-in-bottom hover:shadow-lg" style="background-color: #304550;" data-topic="time">
-            <i class="fa-solid fa-person-chalkboard fa-3x"></i>
-            <h2 class="text-xl font-semibold mt-4">Bite-Sized Lessons</h2>
-            <p class="text-gray-400">Learn investing concepts in under 5 minutes.</p>
-        </div>
-        <div class="feature-item text-white rounded-xl items-center content-center p-4 animate-slide-in-bottom hover:shadow-lg" style="background-color: #304550;" data-topic="time">
-            <i class="fa-solid fa-newspaper fa-3x"></i>
-            <h2 class="text-xl font-semibold mt-4">Simplified News Research</h2>
-            <p class="text-gray-400">Powered by advanced AI search and generative algorithms, concise summaries of key news impacting your portfolios, enabling informed investing decisions in seconds and saving you hours of research.</p>
-        </div>
-        <div class="feature-item text-white rounded-xl items-center content-center p-4 animate-slide-in-bottom hover:shadow-lg" style="background-color: #304550;" data-topic="time">
-            <i class="fa-solid fa-bell fa-3x"></i>
-            <h2 class="text-xl font-semibold mt-4">Real-Time Notifications</h2>
-            <p class="text-gray-400">Get alerts on opportunities or changes to your portfolios at a glance.</p>
-        </div>
-        <div class="feature-item text-white rounded-xl items-center content-center p-4 animate-slide-in-bottom hover:shadow-lg" style="background-color: #304550;" data-topic="time">
-            <i class="fa-solid fa-chart-simple fa-3x"></i>
-            <h2 class="text-xl font-semibold mt-4">Pre-Built Portfolios</h2>
-            <p class="text-gray-400">Choose from AI-recommended portfolios tailored to your goals, saving you the time and stress of picking individual stocks</p>
-        </div>
-        <div class="feature-item text-white rounded-xl items-center content-center p-4 animate-slide-in-bottom hover:shadow-lg" style="background-color: #304550;" data-topic="time">
-            <i class="fa-solid fa-rocket fa-3x"></i>
-            <h2 class="text-xl font-semibold mt-4">AI Tutor Support</h2>
-            <p class="text-gray-400">Ask for concise support on learning modules, available 24/7.</p>
-        </div>
-        <div class="feature-item text-white rounded-xl items-center content-center p-4 animate-slide-in-bottom hover:shadow-lg" style="background-color: #304550;" data-topic="time">
-            <i class="fa-solid fa-calendar-day fa-3x"></i>
-            <h2 class="text-xl font-semibold mt-4">Daily Goals</h2>
-            <p class="text-gray-400">Stay consistent with quick, manageable tasks.</p>
-        </div>
-
-        <!-- Education ones -->
-        <div class="feature-item text-white rounded-xl items-center content-center p-4 animate-slide-in-bottom hover:shadow-lg" style="background-color: #304550;" data-topic="education">
-            <i class="fa-solid fa-graduation-cap fa-3x"></i>
-            <h2 class="text-xl font-semibold mt-4">Step-by-Step Learning Tracks</h2>
-            <p class="text-gray-400">Beginner, intermediate, and advanced courses tailored to your level.</p>
-        </div>
-        <div class="feature-item text-white rounded-xl items-center content-center p-4 animate-slide-in-bottom hover:shadow-lg" style="background-color: #304550;" data-topic="education">
-            <i class="fa-solid fa-chalkboard-user fa-3x"></i>
-            <h2 class="text-xl font-semibold mt-4">Connect with Verified Expert</h2>
-            <p class="text-gray-400">Connect with people on the app who are verified experts for advice on investments.</p>
-        </div>
-        <div class="feature-item text-white rounded-xl items-center content-center p-4 animate-slide-in-bottom hover:shadow-lg" style="background-color: #304550;" data-topic="education">
-            <i class="fa-solid fa-rocket fa-3x"></i>
-            <h2 class="text-xl font-semibold mt-4">AI Tutor Support</h2>
-            <p class="text-gray-400">Ask questions and get personalized explanations anytime.</p>
-        </div>
-        <div class="feature-item text-white rounded-xl items-center content-center p-4 animate-slide-in-bottom hover:shadow-lg" style="background-color: #304550;" data-topic="education">
-            <i class="fa-solid fa-calendar-day fa-3x"></i>
-            <h2 class="text-xl font-semibold mt-4">Market Moment Simulations</h2>
-            <p class="text-gray-400">Learn by practicing decisions based on historical data of your portfolios.</p>
-        </div>
-        <div class="feature-item text-white rounded-xl items-center content-center p-4 animate-slide-in-bottom hover:shadow-lg" style="background-color: #304550;" data-topic="education">
-            <i class="fa-solid fa-circle-info fa-3x"></i>
-            <h2 class="text-xl font-semibold mt-4">Info-Buttons</h2>
-            <p class="text-gray-400">Quick definitions for complex financial terms in the app.</p>
-        </div>
-        <div class="feature-item text-white rounded-xl items-center content-center p-4 animate-slide-in-bottom hover:shadow-lg" style="background-color: #304550;" data-topic="education">
-            <i class="fa-solid fa-chalkboard fa-3x"></i>
-            <h2 class="text-xl font-semibold mt-4">Visual Learning Tools</h2>
-            <p class="text-gray-400">Charts, graphs, and animations that simplify investing concepts.</p>
-        </div>
-
-
-        <!-- Interest ones -->
-        <div class="feature-item text-white rounded-xl items-center content-center p-4 animate-slide-in-bottom hover:shadow-lg" style="background-color: #304550;" data-topic="interest">
-            <i class="fa-solid fa-chart-column fa-3x"></i>
-            <h2 class="text-xl font-semibold mt-4">Thematic Investing</h2>
-            <p class="text-gray-400">Explore portfolios centered around industries you find exciting like AI, gaming, or clean energy.</p>
-        </div>
-        <div class="feature-item text-white rounded-xl items-center content-center p-4 animate-slide-in-bottom hover:shadow-lg" style="background-color: #304550;" data-topic="interest">
-            <i class="fa-solid fa-gamepad fa-3x"></i>
-            <h2 class="text-xl font-semibold mt-4">Gamified Progress</h2>
-            <p class="text-gray-400">Earn points, badges, and rewards as you learn and grow.</p>
-        </div>
-        <div class="feature-item text-white rounded-xl items-center content-center p-4 animate-slide-in-bottom hover:shadow-lg" style="background-color: #304550;" data-topic="interest">
-            <i class="fa-solid fa-people-group fa-3x"></i>
-            <h2 class="text-xl font-semibold mt-4">Collaborative Portfolios</h2>
-            <p class="text-gray-400">Connect with your friends to create portfolios together to pool in money to invest together.</p>
-        </div>
-        <div class="feature-item text-white rounded-xl items-center content-center p-4 animate-slide-in-bottom hover:shadow-lg" style="background-color: #304550;" data-topic="interest">
-            <i class="fa-solid fa-trophy fa-3x"></i>
-            <h2 class="text-xl font-semibold mt-4">Competitions</h2>
-            <p class="text-gray-400">Compete with others in the app to earn rewards and have a fun time with friends.</p>
-        </div>
-        <div class="feature-item text-white rounded-xl items-center content-center p-4 animate-slide-in-bottom hover:shadow-lg" style="background-color: #304550;" data-topic="interest">
-            <i class="fa-solid fa-graduation-cap fa-3x"></i>
-            <h2 class="text-xl font-semibold mt-4">Tuition Rewards Program</h2>
-            <p class="text-gray-400">Earn points for learning and investing that can be redeemed for tuition discounts towards your university, making your financial journey even more rewarding.</p>
-        </div>
-        <div class="feature-item text-white rounded-xl items-center content-center p-4 animate-slide-in-bottom hover:shadow-lg" style="background-color: #304550;" data-topic="interest">
-            <i class="fa-solid fa-calendar-day fa-3x"></i>
-            <h2 class="text-xl font-semibold mt-4">Market Moment Simulations</h2>
-            <p class="text-gray-400">Learn by practicing decisions based on historical data of your portfolios, bridging the gap between theory and applied personal practicality.</p>
-        </div>
-    </div>
-</section>
-
-<!-- Footer -->
-<footer class="bg-black text-white py-8 w-full text-center">
-    <p>&copy; 2024 Finabl. All rights reserved.</p>
-</footer>
-
-    <!-- Animations -->
-    <style>
-           html{
-     scroll-behavior: smooth;;
-   }
-   @keyframes slide-in-bottom {
-  from {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-.animate-slide-in-bottom {
-  animation: slide-in-bottom 0.5s ease-out forwards;
-}
-
-        @keyframes fade-in {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        .animate-fade-in {
-            animation: fade-in 1.5s ease-out;
-        }
-        
-        @keyframes slide-in-left {
-            from { transform: translateX(-100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-        .animate-slide-in-left {
-            animation: slide-in-left 1s ease-out;
-        }
-
-        @keyframes slide-in-right {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-        .animate-slide-in-right {
-            animation: slide-in-right 1s ease-out;
-        }
-
-        /* Add animation for dynamically changing text */
-        .fade-in-out {
-            animation: fade 1.5s ease-in-out;
-        }
-
-        @keyframes fade {
-            0% {
-                opacity: 0;
-            }
-            50% {
-                opacity: 1;
-            }
-            100% {
-                opacity: 0;
-            }
-        }
-        
-    </style>
-    <script>
-        function submitfunction() {
-                const submitbutton = document.getElementById("submitbutton");
-                submitbutton.classList.remove("bg-black");
-                submitbutton.classList.add("bg-green-600");
-                setTimeout(() => {
-                    submitbutton.classList.remove("bg-green-600");
-                    submitbutton.classList.add("bg-black");
-                }, 3000);
-            };
-        // Initialize Typed.js
-        document.addEventListener('DOMContentLoaded', () => {
-            const topicButtons = document.querySelectorAll(".topic-btn");
-    const featureItems = document.querySelectorAll(".feature-item");
-
-    topicButtons.forEach((button) => {
-        button.addEventListener("click", () => {
-            const topic = button.getAttribute("data-topic");
-
-            // Highlight the active button
-            topicButtons.forEach((btn) => btn.classList.remove("bg-gray-400", "text-white"));
-            button.classList.add("bg-gray-400", "text-white");
-
-            // Show/hide feature items based on topic
-            featureItems.forEach((item) => {
-                if (topic === "all" || item.getAttribute("data-topic") === topic) {
-                    item.classList.remove("hidden");
-                } else {
-                    item.classList.add("hidden");
-                }
-            });
-        });
-    });
-    document.querySelector(".topic-btn[data-topic='money']").click();
-
-    let chart; // ApexCharts instance
-    const seriesData = []; // Array to store all series data
-    let maxYears = 0;
-    let labelCounter = 1;
-
-    // Function to generate labels dynamically
-    const generateLabels = (maxYears) => {
-        return Array.from({ length: maxYears + 1 }, (_, i) => `Year ${i}`);
-    };
-
-    // Debugging function to log investment calculations
-    const logBalances = (balances) => {
-        console.log("Generated Balances:", balances);
-    };
-
-    // Button click: Add a new line
-    document.getElementById("calculate").addEventListener("click", () => {
-        const initialAmount = parseFloat(document.getElementById("initial-amount").value) || 0;
-        const years = parseInt(document.getElementById("years").value) || 1;
-        const contributionAmount = parseFloat(document.getElementById("contribution-amount").value) || 0;
-        const contributionFrequency = parseInt(document.getElementById("contribution-frequency").value) || 1; // Contributions per year
-        const annualRate = parseFloat(document.getElementById("investment-style").value) || 0; // Annual rate of return (as a decimal)
-        const labelName = `Investment ${labelCounter++}`; // Unique name for each line
-
-        // Update maxYears to accommodate the longest investment period
-        maxYears = Math.max(maxYears, years);
-
-        const balances = [initialAmount]; // Include Year 0 balance
-        for (let i = 1; i <= years; i++) {
-            const compoundingRate = annualRate / contributionFrequency; // Rate per period
-            const totalPeriods = contributionFrequency * i; // Total periods until year `i`
-
-            // Ensure all calculations return valid numbers
-            const futureValueInitial = isNaN(initialAmount * (1 + annualRate) ** i)
-                ? 0
-                : initialAmount * (1 + annualRate) ** i;
-
-            const futureValueContributions = isNaN(
-                contributionAmount * ((1 + compoundingRate) ** totalPeriods - 1) / compoundingRate
-            )
-                ? 0
-                : contributionAmount * ((1 + compoundingRate) ** totalPeriods - 1) / compoundingRate;
-
-            const totalFutureValue = Math.round(futureValueInitial + futureValueContributions);
-
-            // Push valid data or null if invalid
-            balances.push(isNaN(totalFutureValue) ? null : totalFutureValue);
-        }
-
-        // Log balances for debugging
-        logBalances(balances);
-
-        // Pad all existing series to match the new maxYears
-        seriesData.forEach((series) => {
-            while (series.data.length <= maxYears) {
-                series.data.push(null); // Add null for missing years
-            }
-        });
-
-        // Pad the current series data to match maxYears
-        while (balances.length <= maxYears) {
-            balances.push(null);
-        }
-
-        // Add the new series to the chart
-        seriesData.push({
-            name: labelName,
-            data: balances,
-        });
-
-        const labels = generateLabels(maxYears);
-        console.log(labels)
-
-        if (!chart) {
-            // Create the chart if it doesn't already exist
-            chart = renderChart(labels, seriesData);
-        } else {
-            // Update the chart with the new series and new labels
-            chart.updateOptions({
-                xaxis: {
-                    categories: labels,
-                },
-            });
-            chart.updateSeries(seriesData);
-        }
-
-        // Add the new line to the delete dropdown
-        const option = document.createElement("option");
-        option.value = seriesData.length - 1; // Index of the series in seriesData
-        option.textContent = labelName;
-        document.getElementById("delete-line-select").appendChild(option);
-
-        // Show the controls container
-        document.getElementById("controls-container").classList.remove("hidden");
-    });
-
-    // Button click: Delete a specific line
-    document.getElementById("delete-line").addEventListener("click", () => {
-        const lineIndex = parseInt(document.getElementById("delete-line-select").value);
-        if (!isNaN(lineIndex) && seriesData[lineIndex]) {
-            // Remove the selected line from seriesData
-            seriesData.splice(lineIndex, 1);
-
-            // Update the dropdown
-            const select = document.getElementById("delete-line-select");
-            select.options[lineIndex].remove();
-
-            // Recalculate maxYears after deletion
-            maxYears = Math.max(...seriesData.map((s) => s.data.length - 1), 0);
-            const labels = generateLabels(maxYears);
-
-            // Update the chart
-            if (chart) {
-                chart.updateOptions({
-                    xaxis: {
-                        categories: labels,
-                    },
-                });
-                chart.updateSeries(seriesData);
-            }
-        }
-    });
-
-    // Button click: Reset the entire chart
-    document.getElementById("reset-chart").addEventListener("click", () => {
-        // Clear all series data
-        seriesData.length = 0;
-
-        // Clear the delete dropdown
-        const select = document.getElementById("delete-line-select");
-        while (select.options.length > 0) {
-            select.remove(0);
-        }
-
-        // Reset the chart
-        if (chart) {
-            chart.updateSeries([]);
-            chart.updateOptions({
-                xaxis: {
-                    categories: [],
-                },
-            });
-        }
-
-        // Hide the controls container
-        document.getElementById("controls-container").classList.add("hidden");
-    });
-
-    // Function to render the chart
-    function renderChart(labels, series) {
-        const options = {
-            chart: {
-                type: "line",
-                height: 350,
-            },
-            series: series, // Add all series
-            xaxis: {
-                categories: labels,
-                title: {
-                    text: "Years",
-                },
-            },
-            yaxis: {
-                min: 0,
-                title: {
-                    text: "Balance ($)",
-                },
-                labels: {
-                    formatter: function (value) {
-                        return `$${Math.round(value).toLocaleString()}`;
-                    },
-                },
-            },
-            tooltip: {
-                y: {
-                    formatter: function (value) {
-                        return `$${Math.round(value).toLocaleString()}`;
-                    },
-                },
-            },
-            colors: ["#2563eb", "#34d399", "#fbbf24", "#ef4444", "#8b5cf6"], // Dynamic colors for multiple lines
-            stroke: {
-                curve: "smooth",
-            },
-        };
-
-        const container = document.querySelector("#investment-chart");
-        if (!container) {
-            console.error("#investment-chart container not found!");
-            return null;
-        }
-
-        const chart = new ApexCharts(container, options);
-        chart.render().then(() => console.log("Chart rendered successfully!"));
-        return chart;
+    for (let i = 0; i <= months; i++) {
+      value = value * (1 + rate) + contribution;
+      if (i % 12 === 0) {
+        balances.push(Math.round(value));
+        labels.push(`Year ${i / 12}`);
+      }
     }
 
+    if (!window.chartData) window.chartData = { datasets: [], labels: [] };
+    const datasetIndex = window.chartData.datasets.length + 1;
+    const newDataset = {
+      label: `Projection ${datasetIndex}`,
+      data: balances,
+      borderColor: `hsl(${Math.random() * 360}, 70%, 60%)`,
+      backgroundColor: 'rgba(99,102,241,0.2)',
+      tension: 0.4
+    };
+    window.chartData.datasets.push(newDataset);
+    window.chartData.labels = labels;
 
-        document.getElementById("form").addEventListener("submit", function (event) {
-            event.preventDefault(); // Prevent the default form submission behavior
+    const chartContainer = document.getElementById('chartResult');
+    let canvas = document.getElementById('growthChart');
+    let ctx = canvas.getContext('2d');
 
-            
-            const form = event.target;
-            const email = document.getElementById("email").value;
-            const url = "https://script.google.com/macros/s/AKfycbzMBbKWm6uqa8gK8PjgucOWHXaSaG6KWL3MLeSXA93-PQ6ou5b0oKlXapLZHMrNLhuvYg/exec";
+    if (!window.growthChart || typeof window.growthChart.update !== 'function') {
+      window.growthChart = new Chart(ctx, {
+        type: 'line',
+        data: window.chartData,
+        options: {
+          responsive: true,
+          onClick: (e, elements) => {
+            if (elements.length > 0) {
+              const i = elements[0].datasetIndex;
+              window.chartData.datasets.splice(i, 1);
 
-            const notification = document.getElementById("notification");
-            const triggerButton = document.getElementById("triggerNotification");
-            const closeButton = document.getElementById("closeNotification");
-            
-            const fullUrl = `${url}?newletter_email=${encodeURIComponent(email)}`;
-            
-            // Send the request using fetch
-            fetch(fullUrl, { method: "GET" })
-                .then(response => {
+              // Remove old canvas and insert new
+              canvas.remove();
+              canvas = document.createElement('canvas');
+              canvas.id = 'growthChart';
+              canvas.height = 300;
+              chartContainer.appendChild(canvas);
+              ctx = canvas.getContext('2d');
 
-                    if (response.ok) {
-                        //document.getElementById("message").innerText = "Subscription successful!";
+              // If empty, skip chart creation
+              if (window.chartData.datasets.length === 0) {
+                window.growthChart = null;
+                return;
+              }
 
-                        notification.classList.remove("hidden");
-                        notification.classList.add("flex");
-                        notification.classList.add("animate-slide-in-right");
-
-                        setTimeout(() => {
-                            notification.classList.add("hidden");
-                            notification.classList.remove("flex");
-                        }, 5000);
-
-                    } else {
-                        document.getElementById("message").innerText = "An error occurred. Please try again.";
+              window.growthChart = new Chart(ctx, {
+                type: 'line',
+                data: window.chartData,
+                options: {
+                  responsive: true,
+                  onClick: () => {},
+                  scales: {
+                    y: {
+                      beginAtZero: true,
+                      ticks: {
+                        callback: val => '$' + val.toLocaleString()
+                      }
                     }
-                })
-                .catch(error => {
-                    document.getElementById("message").innerText = "An error occurred. Please try again.";
-                    console.error(error);
-                });
-        });
-            const options = {
-                strings: ["building your investing community", "short, gamified investing education", "your journey to becoming financially able"],
-                typeSpeed: 50,
-                backSpeed: 30,
-                loop: false
-            };
-            new Typed('#typed-text', options);
-        });
-
-        function updateDynamicText(videoId, textId, textMap) {
-            const video = document.getElementById(videoId);
-            const textContainer = document.getElementById(textId);
-        
-            // Create a list to display all text entries
-            const textList = document.createElement("ul");
-            textList.className = "space-y-2"; // Tailwind class for spacing between list items
-            textContainer.appendChild(textList);
-        
-            // Generate list items for each text entry
-            const timestamps = Object.keys(textMap).map(Number).sort((a, b) => a - b); // Sort timestamps numerically
-            timestamps.forEach((timestamp, index) => {
-                const listItem = document.createElement("li");
-                listItem.textContent = textMap[timestamp];
-                listItem.dataset.start = timestamp;
-                listItem.dataset.end = timestamps[index + 1] || Infinity; // End is the next timestamp or Infinity
-                listItem.className =
-                    "text-gray-600 text-lg transition-transform transform"; // Base Tailwind classes
-                textList.appendChild(listItem);
-            });
-        
-            // Highlight the text corresponding to the current time
-            video.addEventListener("timeupdate", () => {
-                const currentTime = Math.floor(video.currentTime);
-        
-                // Remove highlight from all items
-                Array.from(textList.children).forEach((item) => {
-                    item.classList.remove(
-                        "font-bold",
-                        "text-black",
-                        "scale-110",
-                        //"bg-yellow-200",
-                        "rounded",
-                        "p-2"
-                    );
-                });
-        
-                // Highlight the matching item
-                const matchingItem = Array.from(textList.children).find((item) => {
-                    const start = Number(item.dataset.start);
-                    const end = Number(item.dataset.end);
-                    return currentTime >= start && currentTime < end;
-                });
-        
-                if (matchingItem) {
-                    matchingItem.classList.add(
-                        "font-bold",
-                        "text-black",
-                        "scale-110",
-                        //"bg-yellow-200",
-                        "rounded",
-                        "p-2"
-                    ); // Tailwind classes for highlighting
+                  }
                 }
-            });
+              });
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                callback: val => '$' + val.toLocaleString()
+              }
+            }
+          }
         }
+      });
+      window.chartOptions = window.growthChart.options;
+    } else {
+      window.growthChart.update();
+    }
 
-        // Define text changes for each video
-        updateDynamicText("general-video", "general-text", {
-            0: "Based on your preferences, the app recommends portfolios to start with",
-            2: "Edit these portfolios and decide to real or paper trade them",
-            5: "Analyze your portfolios in a seamless fashion",
-            7: "Search stocks, and compare them easily using the comparator tool",
-            16: "Utilize the ideograph for visualizing industries and their key players"
-        });
+    document.getElementById('chartResult').classList.remove('hidden');
+  });
+</script>
 
-        updateDynamicText("learn-video", "learn-text", {
-            0: "Enter the Learn Hub!",
-            1: "Learn daily with bite-sized lessons",
-            2: "Read articles or watch videos on the topic",
-            6: "Answer questions to retain and move through the lesson",
-            9: "Get feedback and recommendations on your performance",
-            12: "Market Moments delivers quizzes tied to your real-time portfolio events, turning stock movements into actionable learning amounts"
-        });
-
-        updateDynamicText("social-video", "social-text", {
-            0: "Connect with friends online and invest in portfolios together",
-            8: "Chat with friends and share portfolios seamlessly",
-            21: "Reach out to verified experts and ask for advice",
-        });
-
-
-    </script>
 </body>
 </html>
